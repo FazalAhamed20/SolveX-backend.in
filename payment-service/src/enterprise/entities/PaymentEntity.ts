@@ -8,5 +8,9 @@ export interface PaymentEntity{
     interval?:string
     startDate:Date,
     endDate:Date,
-    userId:string
+    userId:string,
+    subscriptionTile?: string | null;
+    subscriptionTier?: string | null;
+    subscriptionAmount?: number | null;
+    subscriptionInterval?: string | null;
 }

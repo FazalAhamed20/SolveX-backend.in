@@ -1,6 +1,8 @@
 from typing import List
+    
+    
+def twoSum(f: list[int], g: int) -> list[int]:
 
-
-class Solution:
-    def twoSum(self, f: List[int], g: int) -> List[int]:
+        #  write your code here
         return []
+ 

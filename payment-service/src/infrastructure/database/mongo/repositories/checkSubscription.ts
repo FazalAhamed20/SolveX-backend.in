@@ -1,14 +1,41 @@
 import { PaymentEntity } from "@/enterprise/entities";
-import { Payment } from '@/infrastructure/database/mongo/models';
+import { Payment, Subscription } from '@/infrastructure/database/mongo/models';
+import mongoose from 'mongoose';
 
 export const checkSubscription = async (userId: any): Promise<PaymentEntity | null> => {
-  
-    const existingSubscription = await Payment.findOne( {userId} );
-    
-    if (!existingSubscription) {
-      return null;
-    }
+  const existingPayment = await Payment.findOne({ userId });
 
-    return existingSubscription.toObject() as PaymentEntity;
-  
+  if (!existingPayment) {
+    return null;
+  }
+
+  console.log("id", existingPayment.id);
+
+  const subscriptionId = new mongoose.Types.ObjectId(existingPayment.id);
+  const subscription = await Subscription.findById(subscriptionId);
+
+  if (!subscription) {
+    return null;
+  }
+
+  let subscriptionAmount: number | null = null;
+  let subscriptionInterval: string | null = null;
+
+  if (existingPayment.amount === subscription.monthlyPrice) {
+    subscriptionAmount = subscription.monthlyPrice;
+    subscriptionInterval = 'monthly';
+  } else if (existingPayment.amount === subscription.yearlyPrice) {
+    subscriptionAmount = subscription.yearlyPrice;
+    subscriptionInterval = 'yearly';
+  } else {
+    return null;
+  }
+
+  return {
+    ...existingPayment.toObject(),
+    subscriptionTile: subscription.title || null,
+    subscriptionTier: subscription.tier || null,
+    subscriptionAmount: subscriptionAmount || null,
+    subscriptionInterval: subscriptionInterval,
+  };
 };

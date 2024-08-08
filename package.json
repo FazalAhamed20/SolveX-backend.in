@@ -1,0 +1,21 @@
+{
+  
+    "scripts": {
+      "start:service1": "cd api-gateway && npm run dev",
+      "start:service2": "cd auth && npm run dev",
+      "start:service3": "cd clan-service && npm run dev",
+      "start:service4": "cd payment-service && npm run dev",
+      "start:service5": "cd practical-service && npm run dev",
+      "start:service6": "cd problem-service && npm run dev",
+      "start:service7": "cd submission-service && npm run dev",
+      "start:service8": "cd kafka-dev && docker compose up",
+
+      
+      "start:all": "concurrently \"npm run start:service1\" \"npm run start:service2\" \"npm run start:service3\" \"npm run start:service4\" \"npm run start:service5\"  \"npm run start:service6\" \"npm run start:service7\" \"npm run start:service8\""
+    },
+  
+  
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -41,11 +41,13 @@
     "tags":["array","target"],
     "code":"0004-search-insert-position",
     "language":[{
-        "c":true
+        "cpp":true
        },{
         "go":true
        },{
         "javascript":true
+       },{
+        "java":true
        }]
 
 }

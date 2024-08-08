@@ -2,9 +2,9 @@ import { PaymentEntity } from "@/enterprise/entities";
 import { Payment } from '@/infrastructure/database/mongo/models';
 
 export const createPayment = async (data: PaymentEntity): Promise<PaymentEntity | null> => {
-  console.log(data)
+  console.log("exist",data)
   const existingPayment = await Payment.findOne({
-    id: data.id,userId:data.userId
+    userId:data.userId
   });
 
   if (existingPayment) {

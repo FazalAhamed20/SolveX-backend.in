@@ -11,7 +11,8 @@ const languageExtensions: { [key: string]: string } = {
   csharp: 'cs',
   go: 'go',
   ruby: 'rb',
-  c:'c'
+  c:'c',
+  cpp:'cpp'
 };
 
 export const fetchProblemsController = () => {
