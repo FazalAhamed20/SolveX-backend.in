@@ -1,0 +1,57 @@
+[{
+    "id":"0001",
+    "title":"two-sum",
+    "description":"Given an array of integers f and an integer g, return indices of the two numbers such that they add up to g.You may assume that each input would have exactly one solution, and you may not use the same element twice.You can return the answer in any order.",
+    "difficulty":"Easy",
+    "tags":["add","array"],
+    "code":"0001-two-sum",
+    "language":[{"javascript":true},{"python":true},{"typescript":true}]
+
+},{
+    "id":"0002",
+    "title":"reverse-integer",
+    "description":"Given a signed 32-bit integer f, return f with its digits reversed. If reversing f causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.Assume the environment does not allow you to store 64-bit integers (signed or unsigned).",
+    "difficulty":"Medium",
+    "tags":["reverse","integers"],
+    "code":"0002-reverse-integer",
+    "language":[{
+        "javascript":true
+    },{
+        "python":true
+    },{
+        "typescript":true
+    }]
+
+},{
+    "id":"0003",
+    "title":"length-of-last-word",
+    "description":"Given a string x consisting of words and spaces, return the length of the last word in the string.A word is a maximal substringconsisting of non-space characters only.",
+    "difficulty":"Easy",
+    "tags":["last","string"],
+    "code":"0003-length-of-last-word",
+    "language":[{
+        "javascript":true
+    }]
+
+},{
+    "id":"0004",
+    "title":"search-insert-position",
+    "description":"Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.",
+    "difficulty":"Easy",
+    "tags":["array","target"],
+    "code":"0004-search-insert-position",
+    "language":[{
+        "cpp":true
+       },{
+        "go":true
+       },{
+        "javascript":true
+       },{
+        "java":true
+       }]
+
+}
+
+
+
+]
