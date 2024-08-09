@@ -13,7 +13,7 @@ interface UserDocument {
 }
 
 export const fetchAllUsers = async (): Promise<UserEntity[] | null> => {
-  try {
+  
     const result = await User.find({}).lean();
     console.log("Fetched users:", result);
     
@@ -22,20 +22,17 @@ export const fetchAllUsers = async (): Promise<UserEntity[] | null> => {
       return null;
     }
 
-    // Transform User documents to UserEntity objects
+    
     const users: UserEntity[] = result.map((user: UserDocument) => ({
-      _id: new Types.ObjectId(user._id), // Convert string _id to ObjectId
+      _id: new Types.ObjectId(user._id), 
       username: user.username,
       email: user.email,
-      isBlocked: user.isBlocked ?? false, // Provide a default value if null/undefined
+      isBlocked: user.isBlocked ?? false,
       profileImage: user.profileImage ?? undefined,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt
     }));
 
     return users;
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    throw error;
-  }
+
 }

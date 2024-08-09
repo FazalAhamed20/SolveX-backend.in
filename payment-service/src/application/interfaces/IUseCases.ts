@@ -1,4 +1,4 @@
-import { ICheckSubscriptionUseCase, ICreatePaymentUseCase, ICreateSubscriptionUseCase, IGetAllSubscriptionUseCase } from "@/enterprise/useCaseInterface";
+import { IBlockSubscriptionUseCase, ICheckSubscriptionUseCase, ICreatePaymentUseCase, ICreateSubscriptionUseCase, IGetAllSubscriptionUseCase } from "@/enterprise/useCaseInterface";
 
 
 
@@ -7,6 +7,7 @@ export interface IUseCases{
     getAllSubscriptionUseCase:(dependencies)=>IGetAllSubscriptionUseCase
     createPaymentUseCase:(dependencies)=>ICreatePaymentUseCase
     checkSubscriptionUseCase:(dependencies)=>ICheckSubscriptionUseCase
+    blockSubscriptionUseCase:(dependencies)=>IBlockSubscriptionUseCase
    
    
 }

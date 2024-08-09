@@ -11,7 +11,7 @@ export const googleAuth = async (
 
   if (existingUser) {
     if (existingUser.isBlocked) {
-      throw new Error('User is blocked');
+      throw new Error('Your account has been blocked. Please contact support.');
     }
     return existingUser;
   }

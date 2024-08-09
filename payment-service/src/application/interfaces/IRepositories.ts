@@ -7,6 +7,7 @@ export interface IRepositories{
     getAllSubscription:()=>Promise<SubscriptionEntity[] | null>
     createPayment:(data:PaymentEntity)=>Promise<PaymentEntity | null>
     checkSubscription:(userId:any)=>Promise<PaymentEntity | null>
+    blockSubscription:(data:SubscriptionEntity)=>Promise<SubscriptionEntity | null>
 
    
   

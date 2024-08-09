@@ -2,7 +2,7 @@ import { ClanEntity } from "@/enterprise/entities";
 import { Clan } from '@/infrastructure/database/mongo/models';
 
 export const addMember = async (data: ClanEntity): Promise<ClanEntity | string | null> => {
-    try {
+    
         console.log('Adding members to clan:', data);
         const clan = await Clan.findOne({ _id: data._id, name: data.name });
         console.log("Found clan:", clan);
@@ -39,8 +39,5 @@ export const addMember = async (data: ClanEntity): Promise<ClanEntity | string |
 
         console.log("Members added successfully");
         return updatedClan.toObject() as ClanEntity;
-    } catch (error: any) {
-        console.error("Error adding members:", error.message);
-        return null;
-    }
+   
 };

@@ -8,10 +8,9 @@
       "start:service5": "cd practical-service && npm run dev",
       "start:service6": "cd problem-service && npm run dev",
       "start:service7": "cd submission-service && npm run dev",
-      "start:service8": "cd kafka-dev && docker compose up",
-
+     
       
-      "start:all": "concurrently \"npm run start:service1\" \"npm run start:service2\" \"npm run start:service3\" \"npm run start:service4\" \"npm run start:service5\"  \"npm run start:service6\" \"npm run start:service7\" \"npm run start:service8\""
+      "start:all": "concurrently \"npm run start:service1\" \"npm run start:service2\" \"npm run start:service3\" \"npm run start:service4\" \"npm run start:service5\"  \"npm run start:service6\" \"npm run start:service7\""
     },
   
   

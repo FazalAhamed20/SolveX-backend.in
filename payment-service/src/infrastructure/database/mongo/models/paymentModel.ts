@@ -37,6 +37,9 @@ const paymentSchema = new Schema(
       type:Boolean,
       default:false
     },
+    expirationDate:{
+      type:Date
+    }
   
   },
   {
