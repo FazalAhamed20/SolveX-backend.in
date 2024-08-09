@@ -10,6 +10,7 @@ import { dependencies } from '@/_boot/dependencies'
 
 
 
+
 const app: Application = express()
 
 app.use(express.json())
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(morgan('dev'));
 app.use(helmet())
+
 
 app.get('/', (req: Request, res: Response) => {
   res.status(200).json({

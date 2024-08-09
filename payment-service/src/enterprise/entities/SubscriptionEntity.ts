@@ -6,5 +6,6 @@ export interface SubscriptionEntity{
     monthlyPrice?: number;
     yearlyPrice:number;
     features:string[],
-    tier:string
+    tier:string,
+    isBlocked:boolean
 }

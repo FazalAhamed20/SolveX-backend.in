@@ -5,7 +5,7 @@ export const blockClan = async (
   isBlocked: boolean,
   id: string,
 ): Promise<ClanEntity | null> => {
-  try {
+  
     const result = await Clan.updateOne(
       { _id: id },
       { $set: { isBlocked: isBlocked } },
@@ -38,8 +38,5 @@ export const blockClan = async (
     }
 
     return null;
-  } catch (error) {
-    console.error('Error blocking/unblocking updatedClan:', error);
-    return null;
-  }
+  
 };

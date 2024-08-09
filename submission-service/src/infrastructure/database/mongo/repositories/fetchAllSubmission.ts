@@ -6,14 +6,14 @@ import { User } from "@/_lib/utils/types/"; // Import User interface
 
 
 export const fetchAllSubmission = async (): Promise<SubmissionEntity[]> => {
-    // Fetch all submissions and populate the user information
-    const submissions = await Submission.find({}).populate('userId');
+  
+    const submissions = await Submission.find({submited:"Solved"}).populate('userId');
     console.log("Submissions:", submissions);
 
-    // Aggregate the submissions based on email, difficulty, and language
+    
     const results = submissions.reduce((acc, submission) => {
         const { userId, difficulty, language } = submission;
-        const user = userId as unknown as User; // Cast userId to User type
+        const user = userId as unknown as User; 
         const email = user.email;
         const username = user.username || 'Unknown';
 

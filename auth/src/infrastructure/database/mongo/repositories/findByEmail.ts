@@ -7,7 +7,7 @@ export const findByEmail = async (
   const user = await User.findOne({ email });
   if (user) {
     if (user.isBlocked) {
-      throw new Error('User is blocked');
+      throw new Error('Your account has been blocked. Please contact support.');
     }
     return user;
   }

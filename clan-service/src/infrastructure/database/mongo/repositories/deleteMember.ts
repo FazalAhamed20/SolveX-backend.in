@@ -2,7 +2,7 @@ import { ClanEntity } from "@/enterprise/entities";
 import { Clan } from '@/infrastructure/database/mongo/models';
 
 export const deleteMember = async (clanId: string, memberId: string, memberName: string): Promise<ClanEntity | string | null> => {
-    try {
+    
        
         const clan = await Clan.findById(clanId);
         
@@ -30,9 +30,5 @@ export const deleteMember = async (clanId: string, memberId: string, memberName:
        console.log("updated clan",updatedClan)
         return updatedClan.toObject() as ClanEntity;
 
-    } catch (error) {
-       
-        console.error("Error deleting member:", error);
-        return "An error occurred while deleting the member.";
-    }
+   
 };
