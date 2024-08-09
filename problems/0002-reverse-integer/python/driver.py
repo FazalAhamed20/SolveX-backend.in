@@ -1,2 +1,0 @@
-reverse_integer
-
