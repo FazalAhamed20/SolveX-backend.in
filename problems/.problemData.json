@@ -50,6 +50,23 @@
         "java":true
        }]
 
+},{
+    "id":"0005",
+    "title":"add-numbers",
+    "description":"Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.",
+    "difficulty":"Easy",
+    "tags":["array","target"],
+    "code":"0004-search-insert-position",
+    "language":[{
+        "cpp":true
+       },{
+        "go":true
+       },{
+        "javascript":true
+       },{
+        "java":true
+       }]
+
 }
 
 

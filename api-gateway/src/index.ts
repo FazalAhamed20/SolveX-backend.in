@@ -25,6 +25,7 @@ app.use('/submission', proxy('http://localhost:3002/'));
 app.use('/practicals', proxy('http://localhost:3003/'));
 app.use('/clan', proxy('http://localhost:3004/'));
 app.use('/payment', proxy('http://localhost:3005/'));
+app.use('/chat', proxy('http://localhost:3006/'));
 
 
 app.listen(port, () => {

@@ -47,25 +47,38 @@ export const sendMessageToService = async (
     }
 }
 
-export const userCreatedProducer = async (data: any | null) => {
+export const clanCreatedProducer = async (data: any | null) => {
   
-    try {
-        const [submissionResult, problemResult, clanResult] = await Promise.all([
-            sendMessageToService('to-submission-service', 'userCreated', data),
-            sendMessageToService('to-problem-service', 'userCreated', data),
-            sendMessageToService('to-clan-service', 'userCreated', data)
+   try {
+        const [chatResult, memberResult] = await Promise.all([
+            sendMessageToService('to-chat-service', 'clanCreated', data),
+           
         ]);
-        return { submissionResult, problemResult, clanResult };
+
+        return { chatResult, memberResult };
     } catch (error:any) {
-        console.error('Error sending userCreated message to services:', error.message);
+        console.error('Error sending clanCreated message to services:', error.message);
         throw error;
     }
 }
+export const clanUpdatedProducer = async (data: any | null) => {
+    try {
+         const [chatResult] = await Promise.all([
+             sendMessageToService('to-chat-service', 'clanUpdated', data),
+             
+         ]);
+ 
+         return { chatResult };
+     } catch (error:any) {
+         console.error('Error sending clanUpdated message to services:', error.message);
+         throw error;
+     }
+ }
 
 export const listenForAcknowledgements = async () => {
     await consumer.connect();
     await consumer.subscribe({ 
-        topics: ['to-submission-service-ack', 'to-problem-service-ack', 'to-clan-service-ack'], 
+        topics: [ 'to-chat-service-ack'], 
         fromBeginning: false 
     });
 

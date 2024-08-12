@@ -2,7 +2,7 @@ import { Kafka,Producer,Consumer,Partitioners } from "kafkajs";
 
 
 export const kafka=new Kafka({
-    clientId:"clan-service",
+    clientId:"chat-service",
     brokers:["localhost:29092"]
 })
 
@@ -12,6 +12,6 @@ export const producer:Producer=kafka.producer({
 }
 )
 export const consumer:Consumer=kafka.consumer({
-      groupId: "clan-kafka-group"
+      groupId: "chat-kafka-group"
 
 })

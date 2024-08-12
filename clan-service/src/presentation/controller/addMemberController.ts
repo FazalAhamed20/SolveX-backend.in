@@ -1,6 +1,7 @@
 import { IDependencies } from '@/application/interfaces/IDependencies';
 import { Request, Response, NextFunction } from 'express';
 import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import {  clanUpdatedProducer } from '@/infrastructure/kafka/producer/createClanProducer';
 
 
 export const addMemberController = (dependencies: IDependencies) => {
@@ -20,6 +21,7 @@ export const addMemberController = (dependencies: IDependencies) => {
         
         res.status(HttpStatusCode.BAD_REQUEST).send(result);
       } else if (result && 'members' in result) {
+        await clanUpdatedProducer(result)
        
         res.status(HttpStatusCode.OK).send(result.members);
       } else {

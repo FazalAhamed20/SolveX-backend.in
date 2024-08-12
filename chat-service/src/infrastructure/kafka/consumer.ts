@@ -23,7 +23,7 @@ export const runConsumer = async () => {
         console.log("Kafka connected");
 
         await consumer.subscribe({
-            topics: ['to-clan-service'],
+            topics: ['to-chat-service'],
             fromBeginning: true
         });
 

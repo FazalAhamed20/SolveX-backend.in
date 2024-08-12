@@ -1,14 +1,17 @@
-import { Router } from "express";
 import { controller } from "@/presentation/controller";
+import { Router } from "express";
+
 
 
 export const routes = () => {
-  const{createClan}=controller()
+  const {sendMessage}=controller()
  
 
   const router = Router();
+  router.route('/send-message').post(sendMessage)
 
-  router.route('/create-clan').post(createClan)
+
+
 
 
  

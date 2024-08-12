@@ -1,19 +1,16 @@
 // import { IDependencies } from '@/application/interfaces/IDependencies';
+// import { HttpStatusCode } from 'axios';
 import { Request, Response, NextFunction } from 'express';
-// import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+// // import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
 
-export const createClanController = () => {
-  const {
-    useCases: { createClanUseCase  },
-  } = dependencies;
+export const sendMessageController = () => {
+ 
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       console.log(req.body);
 
-      const result=await createClanUseCase().execute(req.body)
-
-      console.log("result",result)
+      
      
 
     
