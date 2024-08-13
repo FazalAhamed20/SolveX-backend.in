@@ -2,19 +2,22 @@ import { IDependencies } from '@/application/interfaces/IDependencies';
 import { Request, Response, NextFunction } from 'express';
 import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
 
-export const sendMessageController = (dependencies:IDependencies) => {
+export const getMessagesController = (dependencies:IDependencies) => {
 
   const {
-    useCases: { sendMessageUseCase  },
+    
+    useCases: {getMessagesUseCase},
   } = dependencies;
  
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(req.body);
+        const { clanId } = req.params;
+
+      console.log(clanId)
 
 
-      const result=await sendMessageUseCase(dependencies).execute(req.body)
+      const result=await getMessagesUseCase(dependencies).execute(clanId)
 
       console.log("response,result",result)
 

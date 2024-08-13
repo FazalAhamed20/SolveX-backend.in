@@ -7,6 +7,8 @@ import { fetchAllUsersController } from "./fetchAllUsersController";
 import { addMemberController } from "./addMemberController";
 import { deleteMemberController } from "./deleteMemberController";
 import { blockClanController } from "./blockClanController";
+import { leaveClanController } from "./leaveClanController";
+import { requestClanController } from "./requestClanController";
 
 export const controller = (dependencies: IDependencies) => {
     return {
@@ -16,7 +18,9 @@ export const controller = (dependencies: IDependencies) => {
         fetchAllUsers:fetchAllUsersController(dependencies),
         addMember:addMemberController(dependencies),
         deleteMember:deleteMemberController(dependencies),
-        blockClan:blockClanController(dependencies)
+        blockClan:blockClanController(dependencies),
+        leaveClan:leaveClanController(dependencies),
+        requestClan:requestClanController(dependencies)
  
     };
   };

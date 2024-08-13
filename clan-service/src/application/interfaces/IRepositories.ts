@@ -10,6 +10,7 @@ export interface IRepositories{
     addMember:(data:ClanEntity)=>Promise<ClanEntity | string | null>
     deleteMember:(clanId:any,_id:any,memberName:any)=>Promise<ClanEntity | string | null>
     blockClan:(isBlocked:boolean,id:string)=>Promise<ClanEntity | null>
+    requestClan:(clanId:any,userId:any)=>Promise<ClanEntity | string | null>
    
   
     

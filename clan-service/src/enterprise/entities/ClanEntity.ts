@@ -5,6 +5,11 @@ interface ClanMember {
     avatar?: string;
   }
 
+  interface RequestMember {
+    userId:any,
+    status:string
+  }
+
 export interface ClanEntity{
     _id?: any;
     id?:string;
@@ -14,4 +19,5 @@ export interface ClanEntity{
     members:ClanMember[];
     trophies:string | null | undefined,
     isBlocked?:boolean
+    request?:RequestMember[]
 }

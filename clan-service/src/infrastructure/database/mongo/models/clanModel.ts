@@ -7,6 +7,11 @@ const clanMemberSchema = new Schema({
   avatar: { type: String, required: false }
 }, { _id: false });
 
+const requestMemberSchema = new Schema({
+  userId: { type: Types.ObjectId, ref: 'User' },
+  status:{type:String,default:'Pending'}
+}, { _id: false });
+
 const clanSchema = new Schema(
   {
     name: {
@@ -30,7 +35,8 @@ const clanSchema = new Schema(
     isBlocked:{
       type:Boolean,
       default:false
-    }
+    },
+    request:[requestMemberSchema]
   },
   {
     timestamps: true,

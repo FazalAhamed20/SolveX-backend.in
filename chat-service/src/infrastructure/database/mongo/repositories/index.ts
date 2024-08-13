@@ -1,1 +1,2 @@
-export * from './createClan'
+export * from './sendMessage'
+export * from './getMessages'

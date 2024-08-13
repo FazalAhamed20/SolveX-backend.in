@@ -1,1 +1,2 @@
-export * from './createClanUseCase'
+export * from './sendMessageUseCase'
+export * from './getMessagesUseCase'

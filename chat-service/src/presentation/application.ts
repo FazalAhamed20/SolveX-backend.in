@@ -6,8 +6,9 @@ import errorHandler from '@/_lib/utils/middleware/errorHandler';
 import morgan from 'morgan';
 import http from 'http';
 import { Server } from 'socket.io';
-import chatHandler from '@/infrastructure/database/socket/socketHandler';
+import chatHandler from '@/infrastructure/socket/socketHandler';
 import cors from 'cors';
+import { dependencies } from '@/_boot/dependencies';
 
 const app: any = express();
 const server: http.Server = http.createServer(app);
@@ -40,7 +41,7 @@ app.get('/', (req: Request, res: Response) => {
   });
 });
 
-app.use('/api', routes());
+app.use('/api', routes(dependencies));
 app.use(errorHandler);
 
 export { server };  
