@@ -1,5 +1,5 @@
 import server from '@/_boot/server'
-import app from '@/presentation/application'
+import {server as app} from '@/presentation/application'
 import { runConsumer,stopConsumer } from '@/infrastructure/kafka/consumer'
 import database from './database'
 

@@ -9,7 +9,8 @@ const clanMemberSchema = new Schema({
 
 const requestMemberSchema = new Schema({
   userId: { type: Types.ObjectId, ref: 'User' },
-  status:{type:String,default:'Pending'}
+  status:{type:String,default:'Pending'},
+  username:{type:String}
 }, { _id: false });
 
 const clanSchema = new Schema(

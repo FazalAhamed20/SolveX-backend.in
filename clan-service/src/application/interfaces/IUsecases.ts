@@ -6,7 +6,8 @@ import {
     IAddMemberUseCase,
     IDeleteMemberUseCase,
     IBlockClanUseCase,
-    IRequestClanUseCase
+    IRequestClanUseCase,
+    IAcceptClanUseCase
 } from '@/enterprise/useCaseInterface'
 
 
@@ -20,6 +21,6 @@ export interface IUseCases{
     deleteMemberUseCase:(dependencies)=>IDeleteMemberUseCase
     blockClanUseCase:(dependencies)=>IBlockClanUseCase
     requestClanUseCase:(dependencies)=>IRequestClanUseCase
-   
+    acceptClanUseCase:(dependencies)=>IAcceptClanUseCase
    
 }

@@ -11,6 +11,7 @@ export interface IRepositories{
     deleteMember:(clanId:any,_id:any,memberName:any)=>Promise<ClanEntity | string | null>
     blockClan:(isBlocked:boolean,id:string)=>Promise<ClanEntity | null>
     requestClan:(clanId:any,userId:any)=>Promise<ClanEntity | string | null>
+    acceptClan:(clanId:any,userId:any)=>Promise<ClanEntity | string | null>
    
   
     

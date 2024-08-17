@@ -7,7 +7,8 @@ interface ClanMember {
 
   interface RequestMember {
     userId:any,
-    status:string
+    status:string,
+    username:any
   }
 
 export interface ClanEntity{

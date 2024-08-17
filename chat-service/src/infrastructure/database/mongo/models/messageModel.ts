@@ -2,7 +2,9 @@
 import { Schema, model } from 'mongoose';
 
 const MessageSchema = new Schema({
-    text: { type: String, required: true },
+    text: { type: String },
+    image:{type:String},
+    voice:{type:String},
     sender: {
       _id:{ type:Schema.Types.ObjectId, ref: 'User', required: true },
       name:{type:String}

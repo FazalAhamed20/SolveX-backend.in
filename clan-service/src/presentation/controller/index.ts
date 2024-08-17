@@ -9,6 +9,7 @@ import { deleteMemberController } from "./deleteMemberController";
 import { blockClanController } from "./blockClanController";
 import { leaveClanController } from "./leaveClanController";
 import { requestClanController } from "./requestClanController";
+import { acceptClanController } from "./acceptClanController";
 
 export const controller = (dependencies: IDependencies) => {
     return {
@@ -20,7 +21,8 @@ export const controller = (dependencies: IDependencies) => {
         deleteMember:deleteMemberController(dependencies),
         blockClan:blockClanController(dependencies),
         leaveClan:leaveClanController(dependencies),
-        requestClan:requestClanController(dependencies)
+        requestClan:requestClanController(dependencies),
+        acceptClan:acceptClanController(dependencies)
  
     };
   };

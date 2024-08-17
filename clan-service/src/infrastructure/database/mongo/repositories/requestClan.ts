@@ -1,5 +1,5 @@
 import { ClanEntity } from "@/enterprise/entities";
-import { Clan } from '@/infrastructure/database/mongo/models';
+import { Clan, User } from '@/infrastructure/database/mongo/models';
 
 export const requestClan = async (clanId: string, userId: string): Promise<ClanEntity | string | null> => {
     try {
@@ -11,8 +11,13 @@ export const requestClan = async (clanId: string, userId: string): Promise<ClanE
 
         console.log("Original clan requests:", clan.request);
 
+        const user = await User.findById(userId, 'username');
+
+
+        console.log(".............",user)
+
        
-        clan.request.push({ userId: userId, status: "Pending" });
+        clan.request.push({ userId: userId, status: "Pending",username:user?.username });
 
         
         const updatedClan = await clan.save();
