@@ -35,6 +35,10 @@ function chatHandler(io: Server): void {
       socket.to(roomId).emit('typing', { user });
     });
 
+    socket.on('deleteMessage',({roomId,messageID})=>{
+      socket.to(roomId).emit('delete',{messageID})
+    })
+
     socket.on('disconnect', () => {
       console.log('Client disconnected:', userId);
       users.delete(userId);

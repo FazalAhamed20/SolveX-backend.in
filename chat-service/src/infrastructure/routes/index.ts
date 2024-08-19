@@ -5,12 +5,14 @@ import { Router } from "express";
 
 
 export const routes = (dependencies:IDependencies) => {
-  const {sendMessage,getMessages}=controller(dependencies)
+  const {sendMessage,getMessages,deleteMessage,reactMessage}=controller(dependencies)
  
 
   const router = Router();
   router.route('/chat/messages').post(sendMessage)
   router.route('/messages/clan/:clanId').get(getMessages)
+  router.route('/messages/:messageId').delete(deleteMessage)
+  router.route('/messages/react').post(reactMessage)
 
 
 

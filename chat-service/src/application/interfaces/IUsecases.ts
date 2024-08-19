@@ -1,5 +1,7 @@
 import {
+    IDeleteMessageUseCase,
     IGetMessagesUseCase,
+    IReactMessageUseCase,
     ISendMessageUseCase
 } from '@/enterprise/useCaseInterface'
 
@@ -8,6 +10,8 @@ import {
 export interface IUseCases{
     sendMessageUseCase:(dependencies)=>ISendMessageUseCase
     getMessagesUseCase:(dependencies)=>IGetMessagesUseCase
+    deleteMessageUseCase:(dependencies)=>IDeleteMessageUseCase
+    reactMessageUseCase:(dependencies)=>IReactMessageUseCase
    
    
 }

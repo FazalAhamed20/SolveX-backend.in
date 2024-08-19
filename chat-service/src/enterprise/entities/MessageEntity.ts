@@ -1,5 +1,12 @@
 import {  Types } from 'mongoose';
 
+
+export interface Reaction{
+    memberId:string,
+    emoji:string
+
+}
+
 export interface MessageEntity {
     text:string,
     sender: {
@@ -9,4 +16,5 @@ export interface MessageEntity {
     clanId: Types.ObjectId,
     createdAt?:Date,
     updatedAt?: Date
+    reactions?:Reaction[]
 }

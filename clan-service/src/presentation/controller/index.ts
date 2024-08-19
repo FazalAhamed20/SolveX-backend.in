@@ -22,7 +22,8 @@ export const controller = (dependencies: IDependencies) => {
         blockClan:blockClanController(dependencies),
         leaveClan:leaveClanController(dependencies),
         requestClan:requestClanController(dependencies),
-        acceptClan:acceptClanController(dependencies)
+        acceptClan:acceptClanController(dependencies),
+       
  
     };
   };
