@@ -17,4 +17,5 @@ export interface MessageEntity {
     createdAt?:Date,
     updatedAt?: Date
     reactions?:Reaction[]
+    status?:string
 }

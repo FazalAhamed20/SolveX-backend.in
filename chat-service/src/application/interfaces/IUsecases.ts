@@ -12,6 +12,7 @@ export interface IUseCases{
     getMessagesUseCase:(dependencies)=>IGetMessagesUseCase
     deleteMessageUseCase:(dependencies)=>IDeleteMessageUseCase
     reactMessageUseCase:(dependencies)=>IReactMessageUseCase
+    getReactionUseCase:(dependencies)=>IGetMessagesUseCase
    
    
 }

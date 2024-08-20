@@ -11,14 +11,10 @@ export const reactMessageController = (dependencies:IDependencies) => {
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log("body",req.body);
 
 
       const result=await reactMessageUseCase(dependencies).execute(req.body)
 
-     
-
-      console.log("res.............",result)
      
       res.status(HttpStatusCode.OK).send({success:true,data:result})
     

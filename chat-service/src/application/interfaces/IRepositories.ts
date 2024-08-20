@@ -9,6 +9,7 @@ export interface IRepositories{
     getMessages:(id:string)=>Promise<MessageEntity | string | null>
     deleteMessage:(messageId:string)=>Promise<MessageEntity | string | null>
     reactMessage:(data:any)=>Promise<any>
+    getReaction:(messageId:string)=>Promise<MessageEntity | string | null>
    
   
     

@@ -14,13 +14,8 @@ export const getMessagesController = (dependencies:IDependencies) => {
     try {
         const { clanId } = req.params;
 
-      console.log(clanId)
-
 
       const result=await getMessagesUseCase(dependencies).execute(clanId)
-
-      console.log("response,result",result)
-
       
      
       res.status(HttpStatusCode.OK).send(result)

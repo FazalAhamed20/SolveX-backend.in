@@ -4,7 +4,7 @@ import {  Types } from 'mongoose';
 
 
 export const getMessages = async (id: string): Promise<MessageEntity | string | null> => {
-  try {
+  
     console.log("id",id)
     const objectId = new Types.ObjectId(id);
     console.log(objectId)
@@ -16,8 +16,5 @@ export const getMessages = async (id: string): Promise<MessageEntity | string | 
     
    
     return messages as unknown as MessageEntity
-  } catch (error) {
-    console.error("Error sending message:", error);
-    return "An error occurred while sending the message.";
-  }
+ 
 };
