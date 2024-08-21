@@ -24,5 +24,3 @@ export const googleAuth = async (
 
   return result;
 };
-
-

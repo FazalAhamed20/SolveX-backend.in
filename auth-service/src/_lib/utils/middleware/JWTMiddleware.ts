@@ -17,7 +17,9 @@ const checkAuth = (req: Request, res: Response, next: NextFunction) => {
 
   if (!accessToken) {
     console.log('access expired');
-    return res.status(HttpStatusCode.UNAUTHORIZED).json({ message: 'Unauthorized', status: 401 });
+    return res
+      .status(HttpStatusCode.UNAUTHORIZED)
+      .json({ message: 'Unauthorized', status: 401 });
   }
 
   try {
@@ -28,20 +30,26 @@ const checkAuth = (req: Request, res: Response, next: NextFunction) => {
     req.user = decoded;
     next();
   } catch (error) {
-    return res.status(HttpStatusCode.UNAUTHORIZED).json({ message: 'Unauthorized', status: 401 });
+    return res
+      .status(HttpStatusCode.UNAUTHORIZED)
+      .json({ message: 'Unauthorized', status: 401 });
   }
 };
 
 const authorize = (...allowedRoles: string[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
     if (!req.user || !req.user.role) {
-      return res.status(HttpStatusCode.FORBIDDEN).json({ message: 'Forbidden', status: 403 });
+      return res
+        .status(HttpStatusCode.FORBIDDEN)
+        .json({ message: 'Forbidden', status: 403 });
     }
 
     if (allowedRoles.includes(req.user.role)) {
       next();
     } else {
-      return res.status(HttpStatusCode.FORBIDDEN).json({ message: 'Forbidden', status: 403 });
+      return res
+        .status(HttpStatusCode.FORBIDDEN)
+        .json({ message: 'Forbidden', status: 403 });
     }
   };
 };

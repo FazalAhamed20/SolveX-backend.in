@@ -2,7 +2,7 @@ import { ClanEntity } from "@/enterprise/entities";
 import { Clan, User } from '@/infrastructure/database/mongo/models';
 
 export const acceptClan = async (clanId: string, userId: string): Promise<ClanEntity | string | null> => {
-    try {
+ 
       
         const clan = await Clan.findById(clanId);
         
@@ -39,8 +39,5 @@ export const acceptClan = async (clanId: string, userId: string): Promise<ClanEn
       
         return await clan.save() as unknown as ClanEntity;
 
-    } catch (error:any) {
-        console.error("Error in requestClan:", error);
-        return `An error occurred while processing the request: ${error.message}`;
-    }
+    
 };

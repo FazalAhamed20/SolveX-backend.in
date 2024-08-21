@@ -1,4 +1,6 @@
 import { Server, Socket } from 'socket.io';
+import { Message } from '../database/mongo/models';
+// import { Message } from '../database/mongo/models';
 
 interface RoomUsers {
   [roomId: string]: Set<string>;
@@ -21,8 +23,6 @@ function chatHandler(io: Server): void {
       }
       roomUsers[roomId].add(userId);
       socket.to(roomId).emit('userJoined', userId);
-
-      // Send list of online users to the newly joined user
       socket.emit('onlineUsers', Array.from(roomUsers[roomId]));
 
       console.log(`User ${userId} joined clan: ${roomId}`);
@@ -40,9 +40,12 @@ function chatHandler(io: Server): void {
       console.log('Message received:', message, 'Room:', roomId);
       io.to(roomId).emit('message', message);
       socket.to(roomId).emit('messageStatusUpdate', { _id: message._id, status: 'delivered' });
+      console.log('userId',userId)
+      updateMessageStatus(roomId, userId, 'delivered', message._id);
     });
     socket.on('messageRead', async ({ roomId, messageId }) => {
       io.to(roomId).emit('messageStatusUpdate', { _id: messageId, status: 'read' });
+      updateMessageStatus(roomId, userId, 'read', messageId);
     });
 
     socket.on('typing', ({ roomId, user }) => {
@@ -77,3 +80,43 @@ function chatHandler(io: Server): void {
 }
 
 export default chatHandler;
+
+
+async function updateMessageStatus(
+  roomId: string,
+  userId: string,
+  status: 'delivered' | 'read',
+  messageId?: string
+) {
+  try {
+    console.log('Arguments:', { roomId, userId, status, messageId });
+    const query: any = { roomId, userId };
+
+   
+    if (messageId) {
+      query._id = messageId;
+    }
+
+   
+    if (status === 'delivered') {
+      query.status = 'sent';
+    } else if (status === 'read') {
+      query.status = { $in: ['sent', 'delivered'] };
+    }
+
+    console.log('Query:', query);
+
+   
+    const updateResult = await Message.updateMany({clanId:roomId}, {
+      $set: { status: status },
+    });
+
+    console.log('Update result:', updateResult);
+
+    return updateResult;
+  } catch (error) {
+    console.error("Error updating message status:", error);
+    throw new Error("Failed to update message status");
+  }
+}
+

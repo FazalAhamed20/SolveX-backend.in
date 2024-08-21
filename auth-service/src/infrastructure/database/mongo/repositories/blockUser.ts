@@ -13,7 +13,7 @@ export const blockUser = async (
 
   if (result.modifiedCount > 0) {
     const updatedUser = await User.findOne({ email: data.email }).select(
-      '-password'
+      '-password',
     );
     console.log('Updated user', updatedUser);
     return updatedUser;

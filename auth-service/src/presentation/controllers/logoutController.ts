@@ -1,11 +1,10 @@
-
 import { Request, Response } from 'express';
 import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
 
 export const logoutController = () => {
   return async (req: Request, res: Response) => {
     try {
-      console.log("hai")
+      console.log('hai');
       res.clearCookie('access_token');
       res.clearCookie('refresh_token');
       console.log('cookie cleared');

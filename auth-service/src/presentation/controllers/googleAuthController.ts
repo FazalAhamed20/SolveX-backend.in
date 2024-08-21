@@ -6,7 +6,6 @@ import { generateAccessToken } from '@/_lib/utils/jwt';
 import { userCreatedProducer } from '@/infrastructure/kafka/producer/createProducer';
 import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
 
-
 export const googleAuthController = (dependencies: IDependencies) => {
   const { googleUseCase } = dependencies.useCases;
 
@@ -40,19 +39,16 @@ export const googleAuthController = (dependencies: IDependencies) => {
       const accessToken = generateAccessToken({
         _id: String(result._id),
         email: String(result.email),
-        isAdmin:Boolean(result?.isAdmin)
+        isAdmin: Boolean(result?.isAdmin),
       });
-      
-      
 
       res.cookie('access_token', accessToken, {
         httpOnly: true,
-        maxAge:600*1000
-      })
-      
+        maxAge: 600 * 1000,
+      });
 
       console.log('Access Token:', accessToken);
-      await userCreatedProducer(result)
+      await userCreatedProducer(result);
 
       res.status(HttpStatusCode.CREATED).json({
         success: true,
@@ -64,14 +60,14 @@ export const googleAuthController = (dependencies: IDependencies) => {
           linkedin: result.linkedin,
           profileImage: result.profileImage,
           role: result.role,
-          _id:result._id
+          _id: result._id,
         },
         isBlocked: result.isBlocked,
         message: 'User created successfully',
       });
     } catch (error) {
-      console.log('...........................',error);
-      
+      console.log('...........................', error);
+
       next(error);
     }
   };

@@ -2,13 +2,9 @@ import { Router } from 'express';
 import { controller } from '@/presentation/controllers';
 import { IDependencies } from '@/application/interfaces/IDependencies';
 
-
-import checkUser from '../../../../common/middlewares/JWTmiddleware'
-
+import checkUser from '../../../../common/middlewares/JWTmiddleware';
 
 export const routes = (dependencies: IDependencies) => {
-  
-  
   const {
     signUp,
     login,
@@ -35,9 +31,8 @@ export const routes = (dependencies: IDependencies) => {
   router.route('/blockuser').post(block);
   router.route('/refresh-token').post(refreshtoken);
   router.route('/resendotp').post(resendOtp);
-   router.use(checkUser)
+  router.use(checkUser);
   router.route('/ProfileUpdate').post(updateProfile);
-  
 
   return router;
 };

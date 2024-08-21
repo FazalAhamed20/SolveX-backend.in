@@ -12,6 +12,7 @@ export interface IRepositories{
     blockClan:(isBlocked:boolean,id:string)=>Promise<ClanEntity | null>
     requestClan:(clanId:any,userId:any)=>Promise<ClanEntity | string | null>
     acceptClan:(clanId:any,userId:any)=>Promise<ClanEntity | string | null>
+    completeQuiz:(clanId:any,userId:any,score:number)=>Promise<ClanEntity | string | null>
    
   
     

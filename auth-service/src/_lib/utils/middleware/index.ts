@@ -1,4 +1,3 @@
 export * from './errorHandler';
 export * from './JWTMiddleware';
-export * from './checkUserBlockMiddleware'
-
+export * from './checkUserBlockMiddleware';

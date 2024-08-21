@@ -40,22 +40,21 @@ export const verifyOtpController = (dependencies: IDependencies) => {
       const accessToken = generateAccessToken({
         _id: String(result._id),
         email: String(result.email),
-        isAdmin:Boolean(result?.isAdmin)
+        isAdmin: Boolean(result?.isAdmin),
       });
 
       res.cookie('access_token', accessToken, {
         httpOnly: true,
-        maxAge:600*1000
-      })
-      await userCreatedProducer(result)
-
+        maxAge: 600 * 1000,
+      });
+      await userCreatedProducer(result);
 
       res.status(HttpStatusCode.CREATED).json({
         success: true,
         data: {
           username: result.username,
           email: result.email,
-          _id:result._id
+          _id: result._id,
         },
         message: 'User created successfully',
         status: 201,

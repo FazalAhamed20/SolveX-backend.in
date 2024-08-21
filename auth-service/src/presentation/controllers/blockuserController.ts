@@ -16,13 +16,13 @@ export const blockUserController = (dependencies: IDependencies) => {
       if (!result) {
         throw new Error('Blocking User Failed');
       }
-      console.log("Admin User",result);
-      const data={
-        isBlocked:result.isBlocked,
-        email:result.email
-      }
-      await blockUserProducer(data)
-      
+      console.log('Admin User', result);
+      const data = {
+        isBlocked: result.isBlocked,
+        email: result.email,
+      };
+      await blockUserProducer(data);
+
       res.status(HttpStatusCode.OK).json({
         success: true,
         data: result,

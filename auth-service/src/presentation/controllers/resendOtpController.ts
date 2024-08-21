@@ -28,7 +28,9 @@ export const resendOtpController = (dependencies: IDependencies) => {
       }
       console.log('result', result);
 
-      res.status(HttpStatusCode.CREATED).json({ success: true, message: 'OTP Created' });
+      res
+        .status(HttpStatusCode.CREATED)
+        .json({ success: true, message: 'OTP Created' });
     } catch (error) {
       next(error);
     }

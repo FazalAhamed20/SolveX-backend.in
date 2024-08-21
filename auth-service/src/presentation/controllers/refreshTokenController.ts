@@ -25,11 +25,13 @@ export const refreshTokenController = (dependencies: IDependencies) => {
         });
         res.cookie('access_token', accessToken, {
           httpOnly: true,
-          maxAge:60*10000
-        })
+          maxAge: 60 * 10000,
+        });
         res.status(HttpStatusCode.OK).json({ accessToken });
       } else {
-        res.status(HttpStatusCode.BAD_REQUEST).json({ message: 'Unable to refresh token' });
+        res
+          .status(HttpStatusCode.BAD_REQUEST)
+          .json({ message: 'Unable to refresh token' });
       }
     } catch (error) {
       next(error);

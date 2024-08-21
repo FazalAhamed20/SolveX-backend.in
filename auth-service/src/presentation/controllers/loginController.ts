@@ -1,62 +1,51 @@
-import { Request, Response, NextFunction } from 'express'
-import { IDependencies } from '@/application/interfaces/IDependencies'
-import { loginValidation } from '@/_lib/utils/validation'
-import { generateAccessToken, generateRefreshToken } from '@/_lib/utils/jwt'
+import { Request, Response, NextFunction } from 'express';
+import { IDependencies } from '@/application/interfaces/IDependencies';
+import { loginValidation } from '@/_lib/utils/validation';
+import { generateAccessToken, generateRefreshToken } from '@/_lib/utils/jwt';
 import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
 
 export const loginController = (dependencies: IDependencies) => {
   const {
-    useCases: { loginUseCase,refreshUseCase },
-  } = dependencies
+    useCases: { loginUseCase, refreshUseCase },
+  } = dependencies;
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(req.body)
+      console.log(req.body);
 
-      const credentials = req.body
+      const credentials = req.body;
 
-      const { value, error } = await loginValidation.validate(credentials)
+      const { value, error } = await loginValidation.validate(credentials);
 
       if (error) {
-        throw new Error(error.message)
+        throw new Error(error.message);
       }
       const result = await loginUseCase(dependencies).execute(
         value.email,
-        value.password
-      )
+        value.password,
+      );
 
       if (!result) {
-        throw new Error('User logged failed')
+        throw new Error('User logged failed');
       }
 
-      console.log("result.......",result)
+      console.log('result.......', result);
       const refreshToken = generateRefreshToken({
         _id: String(result?._id),
         email: result?.email,
-      })
+      });
 
-   await refreshUseCase(dependencies).execute(value.email,refreshToken)
+      await refreshUseCase(dependencies).execute(value.email, refreshToken);
 
-     
-      
       const accessToken = generateAccessToken({
         _id: String(result?._id),
         email: result?.email,
-        isAdmin: result?.isAdmin
-       
-      })
-     
-
-     
-     
+        isAdmin: result?.isAdmin,
+      });
 
       res.cookie('access_token', accessToken, {
         httpOnly: true,
-        maxAge:600*1000
-      })
-
-      
-
-      
+        maxAge: 600 * 1000,
+      });
 
       res.status(HttpStatusCode.OK).json({
         success: true,
@@ -68,16 +57,15 @@ export const loginController = (dependencies: IDependencies) => {
           linkedin: result.linkedin,
           profileImage: result.profileImage,
           role: result.role,
-          _id:result._id,
+          _id: result._id,
 
           twitter: result.twitter,
         },
         message: 'User logged in',
         isAdmin: result.isAdmin,
-      })
+      });
     } catch (error) {
-      next(error)
+      next(error);
     }
-  }
-}
- 
+  };
+};

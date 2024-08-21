@@ -14,7 +14,9 @@ export const userController = (dependencies: IDependencies) => {
 
       console.log(result);
 
-      res.status(HttpStatusCode.OK).json({ success: true, data: result, message: 'Users ' });
+      res
+        .status(HttpStatusCode.OK)
+        .json({ success: true, data: result, message: 'Users ' });
     } catch (error) {
       next(error);
     }

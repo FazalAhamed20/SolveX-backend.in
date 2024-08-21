@@ -4,7 +4,6 @@ import { generateOTP } from '@/_lib/otp/generateOtp';
 import { sendOTP } from '@/_lib/otp/sendOTP';
 import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
 
-
 export const signUpController = (dependencies: IDependencies) => {
   const {
     useCases: { signupUserUseCase, findByEmailUseCase },
@@ -37,10 +36,10 @@ export const signUpController = (dependencies: IDependencies) => {
         throw new Error('OTP creation failed');
       }
       console.log('result', result);
-     
-      
 
-      res.status(HttpStatusCode.CREATED).json({ success: true, message: 'OTP Created' });
+      res
+        .status(HttpStatusCode.CREATED)
+        .json({ success: true, message: 'OTP Created' });
     } catch (error) {
       next(error);
     }

@@ -3,6 +3,8 @@ interface ClanMember {
     name: string;
     role: string;
     avatar?: string;
+    score?:number
+    isToday?:boolean
   }
 
   interface RequestMember {

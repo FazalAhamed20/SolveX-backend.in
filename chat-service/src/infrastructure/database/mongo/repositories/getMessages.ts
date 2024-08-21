@@ -9,7 +9,7 @@ export const getMessages = async (id: string): Promise<MessageEntity | string | 
     const objectId = new Types.ObjectId(id);
     console.log(objectId)
 
-    // Find messages by ObjectId
+  
     const messages = await Message.find({ clanId: objectId });
 
     console.log('getMessages',messages)

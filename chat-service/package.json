@@ -24,6 +24,7 @@
     "kafkajs": "^2.2.4",
     "mongoose": "^8.5.1",
     "morgan": "^1.10.0",
+    "node-cron": "^3.0.3",
     "nodemon": "^3.1.4",
     "opossum": "^8.1.4",
     "socket.io": "^4.7.5",

@@ -4,16 +4,10 @@ import cookieParser from 'cookie-parser';
 import { dependencies } from '@/_boot/dependencies';
 import { routes } from '@/infrastructure/routes';
 import errorHandler from '@/_lib/utils/middleware/errorHandler';
-import morgan from 'morgan'
+import morgan from 'morgan';
 import { HttpStatusCode } from '../../../common/utils/httpStatusCodes';
 
-  
-
-
-
 const app: Application = express();
-
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
