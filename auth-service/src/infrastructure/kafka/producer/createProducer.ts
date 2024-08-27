@@ -59,13 +59,13 @@ export const sendMessageToService = async (
 
 export const userCreatedProducer = async (data: any | null) => {
   try {
-    const [submissionResult, problemResult, clanResult] = await Promise.all([
+    const [submissionResult, problemResult, clanResult,chatResult] = await Promise.all([
       sendMessageToService('to-submission-service', 'userCreated', data),
       sendMessageToService('to-problem-service', 'userCreated', data),
       sendMessageToService('to-clan-service', 'userCreated', data),
       sendMessageToService('to-chat-service', 'userCreated', data),
     ]);
-    return { submissionResult, problemResult, clanResult };
+    return { submissionResult, problemResult, clanResult,chatResult };
   } catch (error: any) {
     console.error(
       'Error sending userCreated message to services:',
