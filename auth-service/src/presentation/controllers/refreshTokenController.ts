@@ -25,6 +25,8 @@ export const refreshTokenController = (dependencies: IDependencies) => {
         });
         res.cookie('access_token', accessToken, {
           httpOnly: true,
+          secure: true,
+          sameSite:"none",
           maxAge: 60 * 10000,
         });
         res.status(HttpStatusCode.OK).json({ accessToken });

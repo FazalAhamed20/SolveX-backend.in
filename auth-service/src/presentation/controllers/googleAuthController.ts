@@ -44,6 +44,8 @@ export const googleAuthController = (dependencies: IDependencies) => {
 
       res.cookie('access_token', accessToken, {
         httpOnly: true,
+        secure: true,
+          sameSite:"none",
         maxAge: 600 * 1000,
       });
 

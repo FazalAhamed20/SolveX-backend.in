@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import fs from 'fs';
-import path from 'path';
+import axios from 'axios';
 import { HttpStatusCode } from '@/_lib/httpStatusCode/httpStatusCode';
+import dotenv from 'dotenv';
+dotenv.config()
 
 const languageExtensions: { [key: string]: string } = {
   javascript: 'js',
@@ -11,13 +12,33 @@ const languageExtensions: { [key: string]: string } = {
   csharp: 'cs',
   go: 'go',
   ruby: 'rb',
-  c:'c',
-  cpp:'cpp',
-  kotlin:'kt'
+  c: 'c',
+  cpp: 'cpp',
+  kotlin: 'kt'
 };
 
 export const fetchProblemsController = () => {
-  const problemDataPath = path.resolve(__dirname, '../../../../problems');
+  const githubToken = process.env.GITHUB_TOKEN;
+  const repoOwner = 'FazalAhamed20';
+  const repoName = 'problems';
+
+  const fetchFileContent = async (path: string): Promise<string> => {
+    try {
+      const response = await axios.get(
+        `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`,
+        {
+          headers: {
+            'Authorization': `token ${githubToken}`,
+            'Accept': 'application/vnd.github.v3.raw'
+          }
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching file from GitHub: ${path}`, error);
+      return '';
+    }
+  };
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -27,10 +48,10 @@ export const fetchProblemsController = () => {
       console.log(`Fetching problem with ID: ${id} and Title: ${title}`);
       console.log(`Language: ${language}`);
 
-      const problemFolderPath = path.join(problemDataPath, `${id}-${title}`);
-      const inputFilePath = path.join(problemFolderPath, 'input.txt');
-      const outputFilePath = path.join(problemFolderPath, 'output.txt');
-      const inputContent = await fs.promises.readFile(inputFilePath, 'utf-8');
+      const problemFolder = `${id}-${title}`;
+      const inputContent = await fetchFileContent(`${problemFolder}/input.txt`);
+      const outputContent = await fetchFileContent(`${problemFolder}/output.txt`);
+
       let inputJson: any[];
       try {
         inputJson = inputContent.trim().split('\n').map(line => JSON.parse(line));
@@ -38,7 +59,7 @@ export const fetchProblemsController = () => {
         console.error('Error parsing input JSON:', error);
         return res.status(400).json({ message: 'Invalid input format' });
       }
-      const outputContent = await fs.promises.readFile(outputFilePath, 'utf-8');
+
       let outputJson: any[];
       try {
         outputJson = outputContent.trim().split('\n').map(line => JSON.parse(line));
@@ -60,31 +81,14 @@ export const fetchProblemsController = () => {
           return res.status(400).json({ message: 'Unsupported language' });
         }
 
-        const languageFolderPath = path.join(problemFolderPath, language as string);
-        const templateFilePath = path.join(languageFolderPath, `solution.template.${ext}`);
-        const driverFilePath = path.join(languageFolderPath, `driver.${ext}`);
-        const displayFilePath = path.join(languageFolderPath, `display.${ext}`);
+        const languageFolder = `${problemFolder}/${language}`;
+        solutionTemplate = await fetchFileContent(`${languageFolder}/solution.template.${ext}`);
+        driverContent = await fetchFileContent(`${languageFolder}/driver.${ext}`);
+        displayContent = await fetchFileContent(`${languageFolder}/display.${ext}`);
 
-        try {
-          solutionTemplate = await fs.promises.readFile(templateFilePath, 'utf-8');
-          console.log('Solution Template:', solutionTemplate);
-        } catch (error) {
-          console.error(`Error reading solution template for ${language}:`, error);
-        }
-
-        try {
-          driverContent = await fs.promises.readFile(driverFilePath, 'utf-8');
-          console.log('Driver Content:', driverContent);
-        } catch (error) {
-          console.error(`Error reading driver file for ${language}:`, error);
-        }
-
-        try {
-          displayContent = await fs.promises.readFile(displayFilePath, 'utf-8');
-          console.log('Display Content:', displayContent);
-        } catch (error) {
-          console.error(`Error reading display file for ${language}:`, error);
-        }
+        console.log('Solution Template:', solutionTemplate);
+        console.log('Driver Content:', driverContent);
+        console.log('Display Content:', displayContent);
       }
 
       res.status(HttpStatusCode.OK).json({
@@ -98,7 +102,6 @@ export const fetchProblemsController = () => {
         display: displayContent
       });
     } catch (error) {
-    
       next(error);
     }
   };

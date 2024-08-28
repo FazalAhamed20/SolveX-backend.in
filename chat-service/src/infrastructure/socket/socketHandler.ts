@@ -1,17 +1,26 @@
 import { Server, Socket } from 'socket.io';
 import { Message } from '../database/mongo/models';
-// import { Message } from '../database/mongo/models';
 
 interface RoomUsers {
   [roomId: string]: Set<string>;
 }
 
+interface Reaction {
+  memberId: string;
+  emoji: string;
+  createdAt: string;
+}
+
+// In-memory storage for reactions
+const messageReactions = new Map<string, Reaction[]>();
+
 function chatHandler(io: Server): void {
   const roomUsers: RoomUsers = {};
+
   io.on('connection', (socket: Socket) => {
     const userId = socket.handshake.query.userId as string;
-
     let currentRoom: string | null = null;
+
     socket.on('joinRoom', ({ roomId, userId }) => {
       if (currentRoom) {
         leaveRoom(socket, currentRoom, userId);
@@ -40,11 +49,12 @@ function chatHandler(io: Server): void {
       console.log('Message received:', message, 'Room:', roomId);
       io.to(roomId).emit('message', message);
       socket.to(roomId).emit('messageStatusUpdate', { _id: message._id, status: 'delivered' });
-      console.log('messageid',message._id)
+      console.log('messageid', message._id);
       updateMessageStatus(roomId, userId, 'delivered', message._id);
     });
+
     socket.on('messageRead', async ({ roomId, messageId }) => {
-      console.log('m',messageId)
+      console.log('m', messageId);
       io.to(roomId).emit('messageStatusUpdate', { _id: messageId, status: 'read' });
       updateMessageStatus(roomId, userId, 'read', messageId);
     });
@@ -55,19 +65,38 @@ function chatHandler(io: Server): void {
     });
 
     socket.on('deleteMessage', async (data: { roomId: string; messageId: string }) => {
+      console.log('delete')
       try {
         const { roomId, messageId } = data;
-        
-     
+        console.log('delete...............')
         socket.to(roomId).emit('deleteMessage', messageId);
-        
-       
-     
-    
         console.log(`Message ${messageId} deleted from room ${roomId}`);
       } catch (error) {
         console.error('Error in deleteMessage event:', error);
       }
+    });
+
+    socket.on('react_to_message', ({ messageId, emoji, userId }) => {
+      try {
+       
+
+        io.emit('reaction_updated', {
+          messageId: messageId,
+           emoji:emoji,
+          memberId: userId,
+          createdAt: new Date().toISOString()
+        });
+        
+
+      } catch (error) {
+        console.error('Error handling reaction:', error);
+        socket.emit('reaction_error', { error: 'Failed to process reaction' });
+      }
+    });
+
+    socket.on('get_reactions', (messageId: string) => {
+      const reactions = messageReactions.get(messageId) || [];
+      socket.emit('reactions_received', { messageId, reactions });
     });
 
     socket.on('disconnect', () => {
@@ -92,9 +121,6 @@ function chatHandler(io: Server): void {
   }
 }
 
-export default chatHandler;
-
-
 async function updateMessageStatus(
   roomId: string,
   userId: string,
@@ -104,13 +130,11 @@ async function updateMessageStatus(
   try {
     console.log('Arguments:', { roomId, userId, status, messageId });
     const query: any = { roomId, userId };
-
-   
+    
     if (messageId) {
       query._id = messageId;
     }
-
-   
+    
     if (status === 'delivered') {
       query.status = 'sent';
     } else if (status === 'read') {
@@ -118,9 +142,8 @@ async function updateMessageStatus(
     }
 
     console.log('Query:', query);
-
-   
-    const updateResult = await Message.updateMany({clanId:roomId}, {
+    
+    const updateResult = await Message.updateMany({ clanId: roomId }, {
       $set: { status: status },
     });
 
@@ -133,3 +156,4 @@ async function updateMessageStatus(
   }
 }
 
+export default chatHandler;

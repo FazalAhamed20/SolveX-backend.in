@@ -45,6 +45,8 @@ export const verifyOtpController = (dependencies: IDependencies) => {
 
       res.cookie('access_token', accessToken, {
         httpOnly: true,
+        secure: true,
+          sameSite:"none",
         maxAge: 600 * 1000,
       });
       await userCreatedProducer(result);

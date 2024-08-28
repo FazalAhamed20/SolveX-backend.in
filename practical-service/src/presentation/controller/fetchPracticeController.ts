@@ -1,63 +1,68 @@
-
 import { Request, Response, NextFunction } from 'express';
-import fs from 'fs';
-import path from 'path';
 import { HttpStatusCode } from '@/_lib/httpStatusCode/httpStatusCode';
+import axios from 'axios';
+import dotenv from 'dotenv';
 
-   export const fetchPracticeController=()=>{
-    const practiceDataPath=path.resolve(__dirname,'../../../../practical')
-    return async (req:Request,res:Response,next:NextFunction)=>{
-   try {
-    const { language } = req.query;
-    
-    const {id}=req.params
-    console.log(practiceDataPath,id)
-    let solutionTemplate = '';
-    const practiceFolderPath = path.join(practiceDataPath, language as string, id);
-    console.log("practiceFolderPath",practiceFolderPath);
-    
-    const languageTemplate=path.join(practiceFolderPath,'solution.template.js')
-    console.log("anguageTemplate",languageTemplate);
-    
-    solutionTemplate = await fs.promises.readFile(languageTemplate, 'utf-8');
-    console.log("solution",solutionTemplate);
-    
-    const inputFilePath = path.join(practiceFolderPath, 'input.txt');
-    const outputFilePath = path.join(practiceFolderPath, 'output.txt');
-    const inputContent = await fs.promises.readFile(inputFilePath, 'utf-8');
-    let inputJson: any[];
+dotenv.config();
+
+export const fetchPracticeController = () => {
+  const githubToken = process.env.GITHUB_TOKEN;
+  const repoOwner = 'FazalAhamed20';
+  const repoName = 'practice';
+
+  const fetchFileContent = async (path: string): Promise<string> => {
     try {
-      inputJson = inputContent.trim().split('\n').map(line => JSON.parse(line));
+      const response = await axios.get(
+        `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`,
+        {
+          headers: {
+            'Authorization': `token ${githubToken}`,
+            'Accept': 'application/vnd.github.v3.raw'
+          }
+        }
+      );
+      return response.data;
     } catch (error) {
-      console.error('Error parsing input JSON:', error);
-      return res.status(HttpStatusCode.BAD_REQUEST).json({ message: 'Invalid input format' });
+      console.error(`Error fetching file from GitHub: ${path}`, error);
+      throw error;
     }
-    const outputContent = await fs.promises.readFile(outputFilePath, 'utf-8');
-    let outputJson: any[];
+  };
+
+  return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      outputJson = outputContent.trim().split('\n').map(line => JSON.parse(line));
-    } catch (error) {
-      console.error('Error parsing output JSON:', error);
-      return res.status(HttpStatusCode.BAD_REQUEST).json({ message: 'Invalid output format' });
-    }
+      const { language } = req.query;
+      const { id } = req.params;
 
-    console.log('.....', language,
-         inputJson,
-         outputJson,
-        solutionTemplate);
-    
+      console.log('Fetching practice data for:', language, id);
 
-    res.status(HttpStatusCode.OK).json({
-       
+      const basePath = `${language}/${id}`;
+      
+      const solutionTemplate = await fetchFileContent(`${basePath}/solution.template.js`);
+      console.log("solution", solutionTemplate);
+
+      const inputContent = await fetchFileContent(`${basePath}/input.txt`);
+      let inputJson: any[];
+      try {
+        inputJson = inputContent.trim().split('\n').map(line => JSON.parse(line));
+      } catch (error) {
+        console.error('Error parsing input JSON:', error);
+        return res.status(HttpStatusCode.BAD_REQUEST).json({ message: 'Invalid input format' });
+      }
+
+      const outputContent = await fetchFileContent(`${basePath}/output.txt`);
+   
+
+      console.log('.....', language, inputJson, outputContent, solutionTemplate);
+
+      res.status(HttpStatusCode.OK).json({
         language,
         input: inputJson,
-        output: outputJson,
+        output: outputContent,
         solutionTemplate
       });
-    
-   } catch (error) {
-    next(error)
-    
-   }
+    } catch (error) {
+      console.error('Error in fetchPracticeController:', error);
+      next(error);
     }
-   }
+  };
+};
