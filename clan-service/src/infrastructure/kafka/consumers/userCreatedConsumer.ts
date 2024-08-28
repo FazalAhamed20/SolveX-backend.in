@@ -11,6 +11,7 @@ export default async (
   }
 ) => {
   try {
+    console.log('data',data)
     if (Object.keys(data).length === 2 && data.email && 'isBlocked' in data) {
     
       const updatedUser = await User.findOneAndUpdate(

@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { IDependencies } from '@/application/interfaces/IDependencies';
 import fs from 'fs';
 import path from 'path';
-import { HttpStatusCode } from "../../../../common/utils/httpStatusCodes";
+import { HttpStatusCode } from "@/_lib/httpStatusCode/httpStatusCode";
 import { practicalProducer } from "@/infrastructure/kafka/producer/practicalProducer";
 
 export const getAllPracticeController = (dependencies: IDependencies) => {

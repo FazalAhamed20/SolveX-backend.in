@@ -1,6 +1,6 @@
 // auth/src/middleware/errorHandler.ts
 import {  Request, Response } from 'express';
-import { HttpStatusCode } from '../../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/httpStatusCode/httpStatusCode';
 
 const errorHandler = (
   err: Error,

@@ -3,7 +3,7 @@ import { IDependencies } from '@/application/interfaces/IDependencies';
 import { problemProducer } from "@/infrastructure/kafka/producer/problemProducer";
 import fs from 'fs';
 import path from 'path';
-import { HttpStatusCode } from "../../../../common/utils/httpStatusCodes";
+import { HttpStatusCode } from "@/_lib/httpStatusCode/httpStatusCode";
 
 export const getAllProblemsController = (dependencies: IDependencies) => {
   const { useCases: { getAllProblemsUseCase,fetchAllProblemUseCase } } = dependencies;

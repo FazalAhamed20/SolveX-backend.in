@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solvex-practical-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solvex-practical
+  template:
+    metadata:
+      labels:
+        app: solvex-practical
+    spec:
+      containers:
+      - image: fazalahamed628774/practical-service:latest
+        name: solvex-practical
+        envFrom:
+          - configMapRef:
+              name: practical-configmap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: solvex-practical-srv
+spec:
+  selector:
+    app: solvex-practical
+  ports:
+  - protocol: TCP
+    port: 3003
+    targetPort: 3003

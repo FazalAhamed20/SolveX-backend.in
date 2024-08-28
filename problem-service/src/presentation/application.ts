@@ -6,7 +6,7 @@ import { routes } from '@/infrastructure/routes'
 
 import checkUserBlockedMiddleware from '@/_lib/utils/middleware/checkUserBlockMiddleware';
 import errorHandler from '@/_lib/utils/middleware/errorHandler'
-import { HttpStatusCode } from '../../../common/utils/httpStatusCodes'
+import { HttpStatusCode } from '@/_lib/httpStatusCode/httpStatusCode'
 
 
 

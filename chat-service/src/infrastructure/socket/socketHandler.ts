@@ -40,10 +40,11 @@ function chatHandler(io: Server): void {
       console.log('Message received:', message, 'Room:', roomId);
       io.to(roomId).emit('message', message);
       socket.to(roomId).emit('messageStatusUpdate', { _id: message._id, status: 'delivered' });
-      console.log('userId',userId)
+      console.log('messageid',message._id)
       updateMessageStatus(roomId, userId, 'delivered', message._id);
     });
     socket.on('messageRead', async ({ roomId, messageId }) => {
+      console.log('m',messageId)
       io.to(roomId).emit('messageStatusUpdate', { _id: messageId, status: 'read' });
       updateMessageStatus(roomId, userId, 'read', messageId);
     });
@@ -53,8 +54,20 @@ function chatHandler(io: Server): void {
       socket.to(roomId).emit('typing', { user });
     });
 
-    socket.on('deleteMessage', ({ roomId, messageId }) => {
-      socket.to(roomId).emit('deleteMessage', { messageId });
+    socket.on('deleteMessage', async (data: { roomId: string; messageId: string }) => {
+      try {
+        const { roomId, messageId } = data;
+        
+     
+        socket.to(roomId).emit('deleteMessage', messageId);
+        
+       
+     
+    
+        console.log(`Message ${messageId} deleted from room ${roomId}`);
+      } catch (error) {
+        console.error('Error in deleteMessage event:', error);
+      }
     });
 
     socket.on('disconnect', () => {

@@ -15,3 +15,6 @@ export const consumer:Consumer=kafka.consumer({
       groupId: "clan-kafka-group"
 
 })
+export const Topicconsumer: Consumer = kafka.consumer({
+    groupId: "Topicclan-kafka-group"
+})

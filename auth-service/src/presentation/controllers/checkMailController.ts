@@ -2,7 +2,7 @@ import { IDependencies } from '@/application/interfaces/IDependencies';
 import { Request, Response, NextFunction } from 'express';
 import { generateOTP } from '@/_lib/otp/generateOtp';
 import { sendOTP } from '@/_lib/otp/sendOTP';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/utils/httpStatusCode/httpStatusCodes';
 
 export const checkMailController = (dependencies: IDependencies) => {
   const {

@@ -1,7 +1,7 @@
 import { IDependencies } from '@/application/interfaces/IDependencies';
 import { blockUserProducer } from '@/infrastructure/kafka/producer/blockUserProducer';
 import { Request, Response, NextFunction } from 'express';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/utils/httpStatusCode/httpStatusCodes';
 
 export const blockUserController = (dependencies: IDependencies) => {
   const {

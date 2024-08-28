@@ -11,6 +11,7 @@ import { leaveClanController } from "./leaveClanController";
 import { requestClanController } from "./requestClanController";
 import { acceptClanController } from "./acceptClanController";
 import { completeQuizController } from "./completeQuizController";
+import { rejectClanController } from "./rejectClanController";
 
 export const controller = (dependencies: IDependencies) => {
     return {
@@ -24,6 +25,7 @@ export const controller = (dependencies: IDependencies) => {
         leaveClan:leaveClanController(dependencies),
         requestClan:requestClanController(dependencies),
         acceptClan:acceptClanController(dependencies),
+        rejectClan:rejectClanController(dependencies),
         completeQuiz:completeQuizController(dependencies)
        
  

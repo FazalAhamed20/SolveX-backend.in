@@ -6,28 +6,21 @@
     "allowJs": true,
     "checkJs": true,
     "outDir": "./dist",
-    "rootDir": "..", // Set rootDir to the parent directory
+    "rootDir": "./src",
     "removeComments": false,
     "strict": true,
     "noImplicitAny": false,
     "noUnusedLocals": true,
     "moduleResolution": "node",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "common/*": ["common/*"]
+      "@/*": ["src/*"]
     },
     "typeRoots": ["node_modules/@types"],
     "esModuleInterop": true,
     "skipLibCheck": false,
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "src/**/*",
-    "common/**/*" // Include files from the common directory
-  ],
-  "exclude": [
-    "./dist",
-    "./node_modules"
-  ]
+  "include": ["src/**/*"],
+  "exclude": [ "./node_modules"]
 }

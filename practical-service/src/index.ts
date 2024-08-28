@@ -1,8 +1,8 @@
 import('tsconfig-paths')
   .then(({ register }) => {
     register({
-      baseUrl: '.',
-      paths: { '@/*': ['src/*'] },
+      baseUrl: __dirname,
+      paths: { '@/*': ['*'] },
       addMatchAll: false,
     })
   })

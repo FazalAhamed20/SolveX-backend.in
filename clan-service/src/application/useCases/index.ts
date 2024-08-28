@@ -8,4 +8,5 @@ export * from './blockClanUseCase'
 export * from './requestClanUseCase'
 export * from './acceptClanUseCase'
 export * from './completeQuizUseCase'
+export * from './rejectClanUseCase'
 

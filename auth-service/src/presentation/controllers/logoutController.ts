@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/utils/httpStatusCode/httpStatusCodes';
 
 export const logoutController = () => {
   return async (req: Request, res: Response) => {

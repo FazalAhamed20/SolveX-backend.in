@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { IDependencies } from '@/application/interfaces/IDependencies';
 import { generateAccessToken } from '@/_lib/utils/jwt';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/utils/httpStatusCode/httpStatusCodes';
 
 export const refreshTokenController = (dependencies: IDependencies) => {
   const {

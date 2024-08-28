@@ -52,19 +52,15 @@
 
 },{
     "id":"0005",
-    "title":"add-numbers",
-    "description":"Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.",
-    "difficulty":"Easy",
-    "tags":["array","target"],
-    "code":"0004-search-insert-position",
+    "title":"3Sum",
+    "description":"Given an integer array f, return all the triplets [f[i], f[j], f[k]] such that i != j, i != k, and j != k, and f[i] + f[j] + f[k] == 0.Notice that the solution set must not contain duplicate triplets.",
+    "difficulty":"Hard",
+    "tags":["array","triplets"],
+    "code":"0005-3Sum",
     "language":[{
-        "cpp":true
-       },{
-        "go":true
-       },{
         "javascript":true
        },{
-        "java":true
+        "kotlin":true
        }]
 
 }

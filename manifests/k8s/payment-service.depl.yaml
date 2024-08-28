@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solvex-payment-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solvex-payment
+  template:
+    metadata:
+      labels:
+        app: solvex-payment
+    spec:
+      containers:
+      - image: fazalahamed628774/payment-service:latest
+        name: solvex-payment
+        envFrom:
+          - configMapRef:
+              name: payment-configmap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: solvex-payment-srv
+spec:
+  selector:
+    app: solvex-payment
+  ports:
+  - protocol: TCP
+    port: 3005
+    targetPort: 3005

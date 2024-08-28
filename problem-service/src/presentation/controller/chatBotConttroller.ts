@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/httpStatusCode/httpStatusCode';
 
 dotenv.config();
 

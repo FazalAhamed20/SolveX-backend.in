@@ -1,7 +1,7 @@
 import { IDependencies } from '@/application/interfaces/IDependencies';
 import { ClanEntity } from '@/enterprise/entities';
 import { Request, Response, NextFunction } from 'express';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/httpStatusCode/httpStatusCode';
 
 export const fetchAllClanController = (dependencies: IDependencies) => {
   const {

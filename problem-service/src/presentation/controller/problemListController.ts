@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { IDependencies } from '@/application/interfaces/IDependencies';
-import { HttpStatusCode } from "../../../../common/utils/httpStatusCodes";
+import { HttpStatusCode } from "@/_lib/httpStatusCode/httpStatusCode";
 
 
 export const problemListController = (dependencies: IDependencies) => {

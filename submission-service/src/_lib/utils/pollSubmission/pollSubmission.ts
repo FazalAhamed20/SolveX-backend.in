@@ -6,7 +6,7 @@ const HACKEREARTH_CLIENT_SECRET = 'caa0d2418bb1c6adb9447386ec3612679ad6e89a';
 
 
 export async function pollSubmissionStatus(statusUrl: string): Promise<Result> {
-    const maxAttempts = 10;
+    const maxAttempts = 20;
     const delayMs = 1000; 
 
     for (let attempt = 0; attempt < maxAttempts; attempt++) {

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solvex-submission-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solvex-submission
+  template:
+    metadata:
+      labels:
+        app: solvex-submission
+    spec:
+      containers:
+      - image: fazalahamed628774/submission-service:latest
+        name: solvex-submission
+        envFrom:
+          - configMapRef:
+              name: submission-configmap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: solvex-submission-srv
+spec:
+  selector:
+    app: solvex-submission
+  ports:
+  - protocol: TCP
+    port: 3002
+    targetPort: 3002

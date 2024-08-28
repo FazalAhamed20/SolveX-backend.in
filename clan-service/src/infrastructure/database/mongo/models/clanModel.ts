@@ -48,18 +48,6 @@ const clanSchema = new Schema(
   }
 );
 
-clanSchema.pre('save', function(next) {
-  this.members.forEach((member) => {
-    if (member.isToday) {
-      const expirationTime = new Date(member.createdAt.getTime() + 24 * 60 * 60 * 1000); // 24 hours
-      member.expirationTime = expirationTime;
-      setTimeout(() => {
-        member.isToday = false;
-        member.expirationTime = null;
-      }, expirationTime.getTime() - Date.now());
-    }
-  });
-  next();
-});
+
 
 export const Clan = model('clans', clanSchema);

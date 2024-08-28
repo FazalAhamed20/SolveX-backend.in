@@ -3,9 +3,11 @@ import axios from 'axios';
 import { IDependencies } from '@/application/interfaces/IDependencies';
 import { pollSubmissionStatus } from '@/_lib/utils/pollSubmission/pollSubmission';
 import { TestCase } from '@/_lib/utils/types';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/httpStatusCode/httpStatusCode';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const HACKEREARTH_CLIENT_SECRET = 'caa0d2418bb1c6adb9447386ec3612679ad6e89a';
+const HACKEREARTH_CLIENT_SECRET = 'caa0d2418bb1c6adb9447386ec3612679ad6e89a'
 
 const langMap: { [key: string]: string } = {
     javascript: 'JAVASCRIPT_NODE',
@@ -14,7 +16,8 @@ const langMap: { [key: string]: string } = {
     cpp: 'CPP14',
     typescript: 'TYPESCRIPT',
     c: 'C',
-    go: 'GO'
+    go: 'GO',
+    kotlin:'KOTLIN'
 };
 
 async function fetchOutput(url: string): Promise<string> {
@@ -88,6 +91,8 @@ export const runController = (dependencies: IDependencies) => {
                                 return `[]int{${arg.join(', ')}}`;
                             case 'java':
                                 return `new int[]{${arg.join(', ')}}`;
+                                case 'kotlin':
+                                    return `intArrayOf(${arg.join(', ')})`;
                             default:
                                 return `[${arg.join(', ')}]`;
                         }
@@ -139,6 +144,14 @@ public class Solution {
     }
 }`;
                         break;
+                        case 'kotlin':
+        codeWithInput = `
+${source}
+
+fun main() {
+    println(${functionName}(${formattedInputs}))
+}`;
+        break;
                     default:
                         codeWithInput = `${source}
 ${display}(${functionName}(

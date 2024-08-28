@@ -8,7 +8,8 @@ import {
     IBlockClanUseCase,
     IRequestClanUseCase,
     IAcceptClanUseCase,
-    ICompleteQuizClanUseCase
+    ICompleteQuizClanUseCase,
+    IRejectClanUseCase
 } from '@/enterprise/useCaseInterface'
 
 
@@ -23,6 +24,8 @@ export interface IUseCases{
     blockClanUseCase:(dependencies)=>IBlockClanUseCase
     requestClanUseCase:(dependencies)=>IRequestClanUseCase
     acceptClanUseCase:(dependencies)=>IAcceptClanUseCase
+    rejectClanUseCase:(dependencies)=>IRejectClanUseCase
     completeQuizUseCase:(dependencies)=>ICompleteQuizClanUseCase
+
    
 }

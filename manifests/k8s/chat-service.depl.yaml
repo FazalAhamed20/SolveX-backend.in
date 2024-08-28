@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solvex-chat-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solvex-chat
+  template:
+    metadata:
+      labels:
+        app: solvex-chat
+    spec:
+      containers:
+      - image: fazalahamed628774/chat-service:latest
+        name: solvex-chat
+        envFrom:
+          - configMapRef:
+              name: chat-configmap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: solvex-chat-srv
+spec:
+  selector:
+    app: solvex-chat
+  ports:
+  - protocol: TCP
+    port: 3006
+    targetPort: 3006

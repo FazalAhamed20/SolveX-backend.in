@@ -1,4 +1,4 @@
-import { producer, consumer } from "..";
+import { producer, Topicconsumer as consumer } from "..";
 import CircuitBreaker from 'opossum';
 
 const circuitBreakerOptions = {
@@ -75,36 +75,36 @@ export const clanUpdatedProducer = async (data: any | null) => {
      }
  }
 
-export const listenForAcknowledgements = async () => {
-    await consumer.connect();
-    await consumer.subscribe({ 
-        topics: [ 'to-chat-service-ack'], 
-        fromBeginning: false 
-    });
+// export const listenForAcknowledgements = async () => {
+//     await consumer.connect();
+//     await consumer.subscribe({ 
+//         topics: [ 'to-chat-service-ack'], 
+//         fromBeginning: false 
+//     });
 
-    await consumer.run({
-        eachMessage: async ({ topic,  message }) => {
-            if (!message.key || !message.value) {
-                console.error('Received acknowledgement with null key or value');
-                return;
-            }
+//     await consumer.run({
+//         eachMessage: async ({ topic,  message }) => {
+//             if (!message.key || !message.value) {
+//                 console.error('Received acknowledgement with null key or value');
+//                 return;
+//             }
             
-            const value = JSON.parse(message.value.toString());
+//             const value = JSON.parse(message.value.toString());
 
-            console.log(`Received acknowledgement from ${topic}`);
-            console.log(`Original Key: ${value.originalKey}`);
-            console.log(`Status: ${value.status}`);
-            console.log(`Timestamp: ${value.timestamp}`);
+//             console.log(`Received acknowledgement from ${topic}`);
+//             console.log(`Original Key: ${value.originalKey}`);
+//             console.log(`Status: ${value.status}`);
+//             console.log(`Timestamp: ${value.timestamp}`);
 
-            await handleAcknowledgement(topic, value);
-        },
-    });
-};
+//             await handleAcknowledgement(topic, value);
+//         },
+//     });
+// };
 
-async function handleAcknowledgement(topic: string, ackData: any) {
-    console.log(`Handling acknowledgement for ${topic}:`, ackData);
+// async function handleAcknowledgement(topic: string, ackData: any) {
+//     console.log(`Handling acknowledgement for ${topic}:`, ackData);
   
-}
+// }
 
 export const stopAcknowledgementListener = async () => {
     try {
@@ -116,12 +116,12 @@ export const stopAcknowledgementListener = async () => {
     }
 };
 
-async function main() {
-    try {
-        await listenForAcknowledgements();
-    } catch (error:any) {
-        console.error('Error in listenForAcknowledgements:', error.message);
-    }
-}
+// async function main() {
+//     try {
+//         await listenForAcknowledgements();
+//     } catch (error:any) {
+//         console.error('Error in listenForAcknowledgements:', error.message);
+//     }
+// }
 
-main().catch(console.error);
+// main().catch(console.error);

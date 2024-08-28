@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { controller } from '@/presentation/controllers';
 import { IDependencies } from '@/application/interfaces/IDependencies';
 
-import checkUser from '../../../../common/middlewares/JWTmiddleware';
+import checkUser from '@/_lib/utils/middleware/JWTMiddleware';
 
 export const routes = (dependencies: IDependencies) => {
   const {

@@ -1,5 +1,5 @@
 import { IDependencies } from '@/application/interfaces/IDependencies';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/utils/httpStatusCode/httpStatusCodes';
 
 import { Request, Response, NextFunction } from 'express';
 

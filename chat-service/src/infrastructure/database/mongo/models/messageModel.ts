@@ -24,6 +24,18 @@ const MessageSchema = new Schema({
     },
 
     clanId: { type:Schema.Types.ObjectId, ref: 'Clan', required: true },
+    replyTo: {
+      _id: {
+        type:Schema.Types.ObjectId,
+        ref: 'Message'
+      },
+      text: String,
+      image:String,
+      voice:String,
+      sender: {
+        name: String
+      }
+    },
     createdAt: { type: Date, default: Date.now },
     reactions: [ReactionSchema] ,
     status: {
@@ -34,3 +46,6 @@ const MessageSchema = new Schema({
     
   });
   export const Message = model('messages', MessageSchema);
+
+
+  

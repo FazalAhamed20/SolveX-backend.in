@@ -4,7 +4,7 @@ import { generateRandomString } from '@/_lib/otp/generateString';
 import { hashPassword } from '@/_lib/utils/bcrypt';
 import { generateAccessToken } from '@/_lib/utils/jwt';
 import { userCreatedProducer } from '@/infrastructure/kafka/producer/createProducer';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/utils/httpStatusCode/httpStatusCodes';
 
 export const googleAuthController = (dependencies: IDependencies) => {
   const { googleUseCase } = dependencies.useCases;

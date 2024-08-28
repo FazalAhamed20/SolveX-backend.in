@@ -1,6 +1,6 @@
 import { IDependencies } from '@/application/interfaces/IDependencies';
 import { Request, Response, NextFunction } from 'express';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/utils/httpStatusCode/httpStatusCode';
 
 export const getMessagesController = (dependencies:IDependencies) => {
 
@@ -17,6 +17,8 @@ export const getMessagesController = (dependencies:IDependencies) => {
 
 
       const result=await getMessagesUseCase(dependencies).execute(clanId)
+
+      console.log("image",result)
       
      
       res.status(HttpStatusCode.OK).send(result)

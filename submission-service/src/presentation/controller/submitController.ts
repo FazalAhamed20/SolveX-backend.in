@@ -1,7 +1,7 @@
 
 import { IDependencies } from '@/application/interfaces/IDependencies';
 import { Request, Response, NextFunction } from 'express';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/httpStatusCode/httpStatusCode';
 import { submissionProducer } from '@/infrastructure/kafka/producer/submissionProducer';
 
 export const submitController=(dependencies: IDependencies)=>{

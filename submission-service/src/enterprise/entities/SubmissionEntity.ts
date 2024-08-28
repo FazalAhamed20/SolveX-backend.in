@@ -13,5 +13,6 @@ export interface SubmissionEntity {
     isAttempt?:boolean;
     userId: User | string;
     username?:string
+    points?:number
    
   }

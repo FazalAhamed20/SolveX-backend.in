@@ -1,38 +1,63 @@
 // services/submissionService.ts
 import { Submission } from "../models";
 import { SubmissionEntity } from "@/enterprise/entities";
-import { User } from "@/_lib/utils/types/"; // Import User interface
+import {User} from '../models';
 
-
+interface ResultItem {
+  email: string;
+  username: string;
+  difficulty: string;
+  language: string[];
+  count: number;
+  points: number;
+}
 
 export const fetchAllSubmission = async (): Promise<SubmissionEntity[]> => {
-  
-    const submissions = await Submission.find({submited:"Solved"}).populate('userId');
-    console.log("Submissions:", submissions);
+  const submissions = await Submission.find({ submited: "Solved" }).populate('userId');
+  console.log("Submissions:", submissions);
 
+  const results: Record<string, ResultItem> = await submissions.reduce(async (accPromise, submission) => {
+    const acc = await accPromise;
+    const { userId, difficulty, language } = submission;
     
-    const results = submissions.reduce((acc, submission) => {
-        const { userId, difficulty, language } = submission;
-        const user = userId as unknown as User; 
-        const email = user.email;
-        const username = user.username || 'Unknown';
+    if (!userId) {
+      console.log("User not found for submission:", submission);
+      return acc;
+    }
 
-        const key = `${email}-${difficulty}-${language}`;
+    const user = await User.findById(userId);
+    
+    if (!user) {
+      console.log("User not found in database:", userId);
+      return acc;
+    }
 
-        if (!acc[key]) {
-            acc[key] = {
-                email,
-                username,
-                difficulty,
-                language,
-                count: 0,
-            };
-        }
+    console.log("user", user);
+    const email = user.email;
+    const username = user.username || 'Unknown';
+    const points = user.points || 0;
 
-        acc[key].count += 1;
+    const key = `${email}-${difficulty}-${language}`;
 
-        return acc;
-    }, {});
+    if (!acc[key]) {
+      acc[key] = {
+        email,
+        username,
+        difficulty,
+        language,
+        count: 0,
+        points: points,
+      };
+    }
 
-    return Object.values(results);
+    acc[key].count += 1;
+
+    return acc;
+  }, Promise.resolve({} as Record<string, ResultItem>));
+
+  console.log('values', results);
+
+  const sortedResults = Object.values(results).sort((a, b) => b.points - a.points);
+
+  return sortedResults as unknown as SubmissionEntity[];
 };

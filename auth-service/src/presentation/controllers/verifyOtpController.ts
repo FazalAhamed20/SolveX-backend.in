@@ -4,7 +4,7 @@ import { generateAccessToken } from '@/_lib/utils/jwt';
 import { signupValidation } from '@/_lib/utils/validation';
 import { hashPassword } from '@/_lib/utils/bcrypt';
 import { userCreatedProducer } from '@/infrastructure/kafka/producer/createProducer';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/utils/httpStatusCode/httpStatusCodes';
 
 export const verifyOtpController = (dependencies: IDependencies) => {
   const {

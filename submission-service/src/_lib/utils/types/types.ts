@@ -41,6 +41,7 @@ export interface TestCase {
 }
 
 export interface User {
+  points: number;
   _id: string;
   email: string;
   username: string;

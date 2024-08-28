@@ -1,19 +1,15 @@
 import { IDependencies } from '@/application/interfaces/IDependencies';
 import { Request, Response, NextFunction } from 'express';
+import { SubmissionEntity } from '@/enterprise/entities/SubmissionEntity';
 
-interface SubmissionEntity {
+
+interface ProcessedSubmission {
     email: string;
-    username?: string; 
+    username: string;
     difficulty: string;
     language: string[];
-   
-}
-
-interface UserStats {
-    totalProblems: number;
-    totalPoints: number;
-    languages: Set<string>;
-    username?: string; 
+    count: number;
+    points: number;
 }
 
 export const fetchAllSubmissionController = (dependencies: IDependencies) => {
@@ -25,46 +21,27 @@ export const fetchAllSubmissionController = (dependencies: IDependencies) => {
 
             const result: SubmissionEntity[] | null = await fetchAllSubmissionUseCase(dependencies).execute();
 
-            if (!result) {
+            if (!result || result.length === 0) {
                 return res.status(200).json([]);
             }
 
             console.log('Results:', result);
 
-            const difficultyPoints: Record<string, number> = {
-                Easy: 30,
-                Medium: 50,
-                Hard: 100,
-            };
-
-            const userStats: Record<string, UserStats> = {};
-
-            result.forEach(({ email, username, difficulty, language }) => {
-                if (!userStats[email]) {
-                    userStats[email] = {
-                        totalProblems: 0,
-                        totalPoints: 0,
-                        languages: new Set(),
-                        username, 
-                    };
-                }
-
-                userStats[email].totalProblems += 1;
-                userStats[email].totalPoints += difficultyPoints[difficulty] || 0;
-                userStats[email].languages.add(language[0]);
-            });
-
-            const response = Object.entries(userStats).map(([email, stats]) => ({
-                email,
-                username: stats.username, 
-                totalProblems: stats.totalProblems,
-                totalPoints: stats.totalPoints,
-                languages: Array.from(stats.languages),
+           
+            const processedResult: ProcessedSubmission[] = result.map(submission => ({
+                email: submission.email,
+                username: submission.username || 'Unknown',
+                difficulty: submission.difficulty,
+                language: Array.isArray(submission.language) ? submission.language : [submission.language],
+                count: 1, 
+                points: submission.points || 0
             }));
 
-            
+            const sortedResult = processedResult.sort((a, b) => b.points - a.points);
 
-            res.json(response);
+            console.log("sorted",sortedResult)
+
+            res.json(sortedResult);
         } catch (error) {
             next(error);
         }

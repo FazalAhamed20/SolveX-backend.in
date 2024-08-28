@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solvex-problem-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solvex-problem
+  template:
+    metadata:
+      labels:
+        app: solvex-problem
+    spec:
+      containers:
+      - image: fazalahamed628774/problem-service:latest
+        name: solvex-problem
+        envFrom:
+          - configMapRef:
+              name: problem-configmap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: solvex-problem-srv
+spec:
+  selector:
+    app: solvex-problem
+  ports:
+  - protocol: TCP
+    port: 3001
+    targetPort: 3001

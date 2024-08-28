@@ -19,6 +19,7 @@ const userSchema = new Schema(
     isBlocked:{
       type:Boolean
     },
+    points: { type: Number, default: 0 },
     
   
 

@@ -5,7 +5,7 @@ import { dependencies } from '@/_boot/dependencies';
 import { routes } from '@/infrastructure/routes';
 import errorHandler from '@/_lib/utils/middleware/errorHandler';
 import morgan from 'morgan';
-import { HttpStatusCode } from '../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/utils/httpStatusCode/httpStatusCodes';
 
 const app: Application = express();
 

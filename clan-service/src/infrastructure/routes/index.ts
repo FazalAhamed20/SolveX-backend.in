@@ -4,7 +4,7 @@ import { IDependencies } from "@/application/interfaces/IDependencies";
 
 
 export const routes = (dependencies:IDependencies) => {
-  const{createClan,fetchAllClans,fetchAllMember,fetchAllUsers,addMember,deleteMember,blockClan,leaveClan,requestClan,acceptClan,completeQuiz}=controller(dependencies)
+  const{createClan,fetchAllClans,fetchAllMember,fetchAllUsers,addMember,deleteMember,blockClan,leaveClan,requestClan,acceptClan,completeQuiz,rejectClan}=controller(dependencies)
  
 
   const router = Router();
@@ -19,6 +19,7 @@ export const routes = (dependencies:IDependencies) => {
   router.route('/clans/leaveclan').delete(leaveClan)
   router.route('/request-clan').post(requestClan)
   router.route('/accept-clan').post(acceptClan)
+  router.route('/reject-clan').post(rejectClan)
   router.route('/complete-quiz').post(completeQuiz)
 
 

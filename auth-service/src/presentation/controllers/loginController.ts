@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { IDependencies } from '@/application/interfaces/IDependencies';
 import { loginValidation } from '@/_lib/utils/validation';
 import { generateAccessToken, generateRefreshToken } from '@/_lib/utils/jwt';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/utils/httpStatusCode/httpStatusCodes';
 
 export const loginController = (dependencies: IDependencies) => {
   const {

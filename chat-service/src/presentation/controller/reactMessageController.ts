@@ -1,6 +1,6 @@
 import { IDependencies } from '@/application/interfaces/IDependencies';
 import { Request, Response, NextFunction } from 'express';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/utils/httpStatusCode/httpStatusCode';
 
 export const reactMessageController = (dependencies:IDependencies) => {
 
@@ -11,6 +11,7 @@ export const reactMessageController = (dependencies:IDependencies) => {
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
+      console.log("reaction",req.body)
 
 
       const result=await reactMessageUseCase(dependencies).execute(req.body)

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { User } from '@/infrastructure/database/mongo/models/user';
-import { HttpStatusCode } from '../../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/utils/httpStatusCode/httpStatusCodes';
 
 const checkUserBlockedMiddleware = () => {
   return async (req: Request, res: Response, next: NextFunction) => {

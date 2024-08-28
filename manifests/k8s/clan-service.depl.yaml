@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solvex-clan-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solvex-clan
+  template:
+    metadata:
+      labels:
+        app: solvex-clan
+    spec:
+      containers:
+      - image: fazalahamed628774/clan-service:latest
+        name: solvex-clan
+        envFrom:
+          - configMapRef:
+              name: clan-configmap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: solvex-clan-srv
+spec:
+  selector:
+    app: solvex-clan
+  ports:
+  - protocol: TCP
+    port: 3004
+    targetPort: 3004

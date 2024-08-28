@@ -2,7 +2,7 @@
 import { Request, Response, NextFunction } from 'express';
 import fs from 'fs';
 import path from 'path';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/httpStatusCode/httpStatusCode';
 
    export const fetchPracticeController=()=>{
     const practiceDataPath=path.resolve(__dirname,'../../../../practical')

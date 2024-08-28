@@ -38,6 +38,9 @@ const submissionSchema = new Schema({
     ref: 'users', 
     required: true
 
+  },
+  points:{
+    type:Number
   }
  
 }, {

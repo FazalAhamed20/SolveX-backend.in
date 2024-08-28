@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import fs from 'fs';
 import path from 'path';
-import { HttpStatusCode } from '../../../../common/utils/httpStatusCodes';
+import { HttpStatusCode } from '@/_lib/httpStatusCode/httpStatusCode';
 
 const languageExtensions: { [key: string]: string } = {
   javascript: 'js',
@@ -12,7 +12,8 @@ const languageExtensions: { [key: string]: string } = {
   go: 'go',
   ruby: 'rb',
   c:'c',
-  cpp:'cpp'
+  cpp:'cpp',
+  kotlin:'kt'
 };
 
 export const fetchProblemsController = () => {

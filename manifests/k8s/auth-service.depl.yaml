@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solvex-auth-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solvex-auth
+  template:
+    metadata:
+      labels:
+        app: solvex-auth
+    spec:
+      containers:
+      - image: fazalahamed628774/auth-service:latest
+        name: solvex-auth
+        envFrom:
+          - configMapRef:
+              name: auth-configmap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: solvex-auth-srv
+spec:
+  selector:
+    app: solvex-auth
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000

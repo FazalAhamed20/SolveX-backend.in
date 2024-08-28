@@ -1,7 +1,7 @@
 module.exports = {
     parser: '@typescript-eslint/parser',
     parserOptions: {
-        project: './tsconfig.json',  // Path to your tsconfig.json
+        project: './tsconfig.json',  
         tsconfigRootDir: __dirname,
         ecmaVersion: 2020,
         sourceType: 'module',
@@ -10,6 +10,7 @@ module.exports = {
       'eslint:recommended',
       'plugin:@typescript-eslint/recommended',
     ],
+    // eslint-disable-next-line no-dupe-keys
     parserOptions: {
       ecmaVersion: 2020,
       sourceType: 'module',
@@ -29,6 +30,7 @@ module.exports = {
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/no-var-requires":"off"
       
     },
   };
