@@ -13,7 +13,7 @@ spec:
   - host: www.thecoffeeland.shop
     http:
       paths:
-      - path: /auth
+      - path: /auth/api
         pathType: Prefix
         backend:
           service:

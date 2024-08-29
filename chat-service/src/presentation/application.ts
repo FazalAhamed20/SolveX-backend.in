@@ -13,7 +13,7 @@ import { dependencies } from '@/_boot/dependencies';
 const app: any = express();
 const server: http.Server = http.createServer(app);
 
-const FRONTEND_URL = "http://localhost:5173";
+const FRONTEND_URL = "https://solve-x-frontend-in.vercel.app";
 
 app.use(cors({
   origin: FRONTEND_URL,

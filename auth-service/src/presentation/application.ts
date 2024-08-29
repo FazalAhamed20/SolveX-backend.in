@@ -20,7 +20,7 @@ app.get('/', (req: Request, res: Response) => {
   });
 });
 
-app.use('/api', routes(dependencies));
+app.use('/auth/api', routes(dependencies));
 
 app.use(errorHandler);
 
