@@ -1,0 +1,64 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-controller
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "https://solve-x-frontend-in.vercel.app"
+spec:
+  ingressClassName: webapprouting.kubernetes.azure.com
+  rules:
+  - host: www.thecoffeeland.shop
+    http:
+      paths:
+      - path: /auth
+        pathType: Prefix
+        backend:
+          service:
+            name: solvex-auth-srv
+            port:
+              number: 3000
+      - path: /problem
+        pathType: Prefix
+        backend:
+          service:
+            name: solvex-problem-srv
+            port:
+              number: 3001
+      - path: /submission
+        pathType: Prefix
+        backend:
+          service:
+            name: solvex-submission-srv
+            port:
+              number: 3002
+      - path: /practicals
+        pathType: Prefix
+        backend:
+          service:
+            name: solvex-practical-srv
+            port:
+              number: 3003
+      - path: /clan
+        pathType: Prefix
+        backend:
+          service:
+            name: solvex-clan-srv
+            port:
+              number: 3004
+      - path: /payment
+        pathType: Prefix
+        backend:
+          service:
+            name: solvex-payment-srv
+            port:
+              number: 3005
+      - path: /chat
+        pathType: Prefix
+        backend:
+          service:
+            name: solvex-chat-srv
+            port:
+              number: 3006
