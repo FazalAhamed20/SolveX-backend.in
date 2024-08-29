@@ -9,7 +9,7 @@ const app:Application = express();
 const port = 8000;
 
 const corsOptions = {
-    origin: "https://solve-x-frontend-in-git-main-fazalahamed20s-projects.vercel.app" ,
+    origin: "http://localhost:5173" ,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   };

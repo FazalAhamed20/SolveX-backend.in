@@ -17,7 +17,7 @@ spec:
         name: solvex-problem
         envFrom:
           - configMapRef:
-              name: problem-configmap
+              name: problem-env-configmap
 ---
 apiVersion: v1
 kind: Service

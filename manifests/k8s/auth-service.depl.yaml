@@ -17,7 +17,7 @@ spec:
         name: solvex-auth
         envFrom:
           - configMapRef:
-              name: auth-configmap
+              name: auth-env-configmap
 ---
 apiVersion: v1
 kind: Service

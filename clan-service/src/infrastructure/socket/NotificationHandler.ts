@@ -107,15 +107,15 @@ function notificationHandler(io: Server): void {
         console.error("Error sending rejection notification:", error);
       }
     });
-    socket.on('markNotificationAsRead', async ({ notificationId }) => {
+    socket.on('markNotificationsSeen', async ({ notificationIds }) => {
       try {
       
   
     
          
-          io.emit('notificationMarkedAsRead', { notificationId });
+          io.emit('notificationMarkedAsRead', { notificationIds });
 
-        console.log("messageId",notificationId)
+        console.log("messageId",notificationIds)
       } catch (error) {
         console.error('Error marking notification as read:', error);
       }

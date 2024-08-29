@@ -17,7 +17,7 @@ spec:
         name: solvex-clan
         envFrom:
           - configMapRef:
-              name: clan-configmap
+              name: clan-env-configmap
 ---
 apiVersion: v1
 kind: Service

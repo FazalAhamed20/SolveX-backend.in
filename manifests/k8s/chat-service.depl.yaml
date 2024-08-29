@@ -17,7 +17,7 @@ spec:
         name: solvex-chat
         envFrom:
           - configMapRef:
-              name: chat-configmap
+              name: chat-env-configmap
 ---
 apiVersion: v1
 kind: Service

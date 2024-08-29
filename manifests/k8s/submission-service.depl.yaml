@@ -17,7 +17,7 @@ spec:
         name: solvex-submission
         envFrom:
           - configMapRef:
-              name: submission-configmap
+              name: submission-env-configmap
 ---
 apiVersion: v1
 kind: Service
