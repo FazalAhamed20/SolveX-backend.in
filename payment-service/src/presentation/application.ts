@@ -26,7 +26,7 @@ app.get('/', (req: Request, res: Response) => {
   })
 })
 
-app.use('/api', routes(dependencies))
+app.use('/payment/api', routes(dependencies))
 app.use(errorHandler)
 
 

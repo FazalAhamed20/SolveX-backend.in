@@ -27,7 +27,7 @@ app.get('/', (req: Request, res: Response) => {
   })
 })
 
-app.use('/api', routes(dependencies))
+app.use('/problem/api', routes(dependencies))
 app.use(errorHandler);
 
 

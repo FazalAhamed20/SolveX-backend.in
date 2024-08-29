@@ -41,7 +41,7 @@ app.get('/', (req: Request, res: Response) => {
   });
 });
 
-app.use('/api', routes(dependencies));
+app.use('/chat/api', routes(dependencies));
 app.use(errorHandler);
 
 export { server };  

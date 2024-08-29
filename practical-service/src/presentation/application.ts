@@ -23,7 +23,7 @@ app.get('/', (req: Request, res: Response) => {
   })
 })
 
-app.use('/api', routes(dependencies))
+app.use('/practicals/api', routes(dependencies))
 app.use(errorHandler)
 
 

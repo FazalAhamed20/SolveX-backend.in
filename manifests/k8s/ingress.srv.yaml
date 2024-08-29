@@ -20,42 +20,42 @@ spec:
             name: solvex-auth-srv
             port:
               number: 3000
-      - path: /problem
+      - path: /problem/api
         pathType: Prefix
         backend:
           service:
             name: solvex-problem-srv
             port:
               number: 3001
-      - path: /submission
+      - path: /submission/api
         pathType: Prefix
         backend:
           service:
             name: solvex-submission-srv
             port:
               number: 3002
-      - path: /practicals
+      - path: /practicals/api
         pathType: Prefix
         backend:
           service:
             name: solvex-practical-srv
             port:
               number: 3003
-      - path: /clan
+      - path: /clan/api
         pathType: Prefix
         backend:
           service:
             name: solvex-clan-srv
             port:
               number: 3004
-      - path: /payment
+      - path: /payment/api
         pathType: Prefix
         backend:
           service:
             name: solvex-payment-srv
             port:
               number: 3005
-      - path: /chat
+      - path: /chat/api
         pathType: Prefix
         backend:
           service:
