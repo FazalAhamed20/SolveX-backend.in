@@ -15,11 +15,6 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
         
-      - name: List contents of the repo
-        run: |
-          pwd
-          ls -R
-        
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       
@@ -35,24 +30,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          context: ./submission-service/
+          context:  ./submission-service/
           platforms: linux/amd64,linux/arm64
           push: true
           tags: fazalahamed628774/submission-service:latest
-          no-cache: true
-          build-args: |
-            BUILDKIT_INLINE_CACHE=0
-          outputs: type=docker,dest=/tmp/docker-image.tar
-        env:
-          DOCKER_BUILDKIT: 1
-          BUILDX_NO_DEFAULT_LOAD: true
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: docker-image
-          path: /tmp/docker-image.tar
-
-      - name: Display structure of built files
-        if: always()
-        run: ls -R ./submission-service/

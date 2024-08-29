@@ -1,4 +1,4 @@
-name: Build and publish auth service to Docker Hub
+name: Build and publish problem service to Docker Hub
 
 on:
   push:
