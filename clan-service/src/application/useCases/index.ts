@@ -1,5 +1,5 @@
 export * from './createClanUseCase'
-export * from './fetchAllClansuseCase'
+export * from './fetchAllClansUseCase'
 export * from './fetchAllMembersUseCase'
 export * from './fetchAllUsersUseCase'
 export * from './addMemberUseCase'
