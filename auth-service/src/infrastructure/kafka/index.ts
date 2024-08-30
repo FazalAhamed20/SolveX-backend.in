@@ -11,9 +11,11 @@ export const kafka = new Kafka({
     password: String(process.env.KAFKA_PASSWORD),
     mechanism: 'plain'
   },
-  connectionTimeout: 30000, 
-  authenticationTimeout: 30000
+  connectionTimeout: 300000, 
+  authenticationTimeout: 300000
 });
+console.log(`Kafka client initialized with clientId: ${process.env.KAFKA_CLIENT_ID}`);
+console.log(`Broker URLs: ${process.env.KAFKA_BROKER_URLS}`);
 
 export const producer: Producer = kafka.producer({
   createPartitioner: Partitioners.LegacyPartitioner,

@@ -46,6 +46,7 @@ export const sendMessageToService = async (
     console.log(`Message sent successfully to ${serviceTopic}`);
     return result;
   } catch (error: any) {
+    console.error('Error message:', error.message);
     if (error.type === 'open') {
       console.error(
         `Circuit is open. Not attempting to send message to ${serviceTopic}.`,
