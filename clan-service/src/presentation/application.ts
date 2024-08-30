@@ -27,7 +27,7 @@ const io = new Server(server, {
     credentials: true
   },
   path:'/clan-socket',
-  transports: ['websocket', 'polling']
+ 
 });
 
 app.use(express.json());
