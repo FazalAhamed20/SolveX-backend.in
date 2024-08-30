@@ -14,6 +14,7 @@ const errorHandler = (
   const errorResponse = {
     success: false,
     error: err.message || 'Something went wrong',
+    
     status: statusCode,
   };
 
