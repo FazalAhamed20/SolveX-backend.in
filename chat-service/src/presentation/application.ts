@@ -26,9 +26,7 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
     credentials: true
   },
-  pingTimeout: 60000,
-  upgradeTimeout: 30000,
-  transports: ['websocket', 'polling']
+  
 });
 
 app.use(express.json());
@@ -42,6 +40,10 @@ app.get('/', (req: Request, res: Response) => {
   res.status(200).json({
     message: 'Submission-Service ON!',
   });
+});
+
+app.get('/socket.io', (req, res) => {
+  res.send('Socket.IO server is running');
 });
 
 app.use('/chat/api', routes(dependencies));
