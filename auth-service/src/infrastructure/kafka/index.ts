@@ -1,25 +1,49 @@
 import { Kafka, Producer, Consumer, Partitioners } from 'kafkajs';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
+const brokerUrls = process.env.KAFKA_BROKER_URLS ? process.env.KAFKA_BROKER_URLS.split(',') : [];
+const kafkaClientId = process.env.KAFKA_CLIENT_ID || 'default-client-id';
+const kafkaUsername = process.env.KAFKA_USERNAME;
+const kafkaPassword = process.env.KAFKA_PASSWORD;
+
+if (!kafkaUsername || !kafkaPassword) {
+  throw new Error('Kafka username or password is not defined in environment variables.');
+}
+
 export const kafka = new Kafka({
-  clientId: process.env.KAFKA_CLIENT_ID,
-  brokers: [String(process.env.KAFKA_BROKER_URLS)],
+  clientId: kafkaClientId,
+  brokers: brokerUrls,
   ssl: true,
   sasl: {
-    username: String(process.env.KAFKA_USERNAME),
-    password: String(process.env.KAFKA_PASSWORD),
-    mechanism: 'plain'
+    mechanism: 'plain', 
+    username: kafkaUsername,
+    password: kafkaPassword,
   },
-  connectionTimeout: 30000, 
-  authenticationTimeout: 30000
+  connectionTimeout: 30000,
+  authenticationTimeout: 30000,
+  retry: {
+    initialRetryTime: 100,
+    retries: 8,
+  },
 });
-console.log(`Kafka client initialized with clientId: ${process.env.KAFKA_CLIENT_ID}`);
-console.log(`Broker URLs: ${process.env.KAFKA_BROKER_URLS}`);
+
+console.log(`Kafka client initialized with clientId: ${kafkaClientId}`);
+console.log(`Broker URLs: ${brokerUrls.join(', ')}`);
 
 export const producer: Producer = kafka.producer({
   createPartitioner: Partitioners.LegacyPartitioner,
+  retry: {
+    initialRetryTime: 100,
+    retries: 8,
+  },
 });
+
 export const consumer: Consumer = kafka.consumer({
   groupId: 'auth-kafka-group',
+  retry: {
+    initialRetryTime: 100,
+    retries: 8,
+  },
 });
