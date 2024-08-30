@@ -25,7 +25,10 @@ const io = new Server(server, {
     origin: FRONTEND_URL,
     methods: ["GET", "POST"],
     credentials: true
-  }
+  },
+  pingTimeout: 60000,
+  upgradeTimeout: 30000,
+  transports: ['websocket', 'polling']
 });
 
 app.use(express.json());

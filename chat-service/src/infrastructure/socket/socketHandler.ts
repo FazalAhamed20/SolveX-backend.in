@@ -11,7 +11,7 @@ interface Reaction {
   createdAt: string;
 }
 
-// In-memory storage for reactions
+
 const messageReactions = new Map<string, Reaction[]>();
 
 function chatHandler(io: Server): void {
@@ -19,6 +19,7 @@ function chatHandler(io: Server): void {
 
   io.on('connection', (socket: Socket) => {
     const userId = socket.handshake.query.userId as string;
+    console.log('userId',userId)
     let currentRoom: string | null = null;
 
     socket.on('joinRoom', ({ roomId, userId }) => {
