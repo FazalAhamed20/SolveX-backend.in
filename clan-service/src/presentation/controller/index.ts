@@ -1,7 +1,7 @@
 
 import { IDependencies } from "@/application/interfaces/IDependencies";
 import { createClanController } from "./createClanController";
-import { fetchAllClanController } from "./fetchAllClansController";
+
 import { fetchAllMemberController } from "./fetchAllMembersController";
 import { fetchAllUsersController } from "./fetchAllUsersController";
 import { addMemberController } from "./addMemberController";
@@ -16,7 +16,7 @@ import { rejectClanController } from "./rejectClanController";
 export const controller = (dependencies: IDependencies) => {
     return {
         createClan:createClanController(dependencies),
-        fetchAllClans:fetchAllClanController(dependencies),
+        
         fetchAllMember:fetchAllMemberController(dependencies),
         fetchAllUsers:fetchAllUsersController(dependencies),
         addMember:addMemberController(dependencies),

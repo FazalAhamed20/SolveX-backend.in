@@ -1,6 +1,6 @@
 import {
     ICreateClanUseCase,
-   IFetchAllClansUseCase,
+  
     IFetchAllMembersUseCase,
     IFetchAllUsersUseCase,
     IAddMemberUseCase,
@@ -16,7 +16,7 @@ import {
 
 export interface IUseCases{
     createClanUseCase:(dependencies)=>ICreateClanUseCase
-    fetchAllClansUseCase:(dependencies)=>IFetchAllClansUseCase,
+  
     fetchAllMembersUseCase:(dependencies)=>IFetchAllMembersUseCase
     fetchAllUsersUseCase:(dependencies)=>IFetchAllUsersUseCase
     addMemberUseCase:(dependencies)=>IAddMemberUseCase
