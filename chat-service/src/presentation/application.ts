@@ -27,7 +27,7 @@ const io = new Server(server, {
     credentials: true
   },
   path:'/chat-socket',
-  transports: ['websocket', 'polling']
+  
   
 });
 
