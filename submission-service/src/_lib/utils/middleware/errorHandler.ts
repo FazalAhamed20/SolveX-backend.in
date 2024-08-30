@@ -1,22 +1,23 @@
-import { Request, Response} from 'express';
+import { Request, Response } from 'express';
+import { HttpStatusCode } from '@/_lib/httpStatusCode/httpStatusCode';
 
 const errorHandler = (
   err: Error,
   req: Request,
   res: Response,
+
 ) => {
   console.error(err);
 
+  const statusCode = (err as any).statusCode || HttpStatusCode.INTERNAL_SERVER_ERROR;
+
   const errorResponse = {
-    errors: err.message || 'Something went wrong',
+    success: false,
+    error: err.message || 'Something went wrong',
+    status: statusCode,
   };
 
-  return res.status(500).json({
-    success: false,
-    data: errorResponse,
-    message: errorResponse.errors,
-    status: 500,
-  });
+  return res.status(statusCode).json(errorResponse);
 };
 
 export default errorHandler;
