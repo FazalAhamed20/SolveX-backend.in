@@ -42,6 +42,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use('/clan/api', routes(dependencies));
+
 app.use(errorHandler);
 
 export { server };  

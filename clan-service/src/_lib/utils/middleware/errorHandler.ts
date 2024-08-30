@@ -1,15 +1,19 @@
-import { Request, Response } from 'express';
+import { Request, Response, } from 'express';
 import { HttpStatusCode } from '@/_lib/httpStatusCode/httpStatusCode';
 
+interface CustomError extends Error {
+  statusCode?: number;
+}
+
 const errorHandler = (
-  err: Error,
+  err: CustomError,
   req: Request,
   res: Response,
 
 ) => {
   console.error(err);
 
-  const statusCode = (err as any).statusCode || HttpStatusCode.INTERNAL_SERVER_ERROR;
+  const statusCode = err.statusCode || HttpStatusCode.INTERNAL_SERVER_ERROR;
 
   const errorResponse = {
     success: false,
@@ -17,7 +21,7 @@ const errorHandler = (
     status: statusCode,
   };
 
-  return res.status(statusCode).json(errorResponse);
+  res.status(statusCode).json(errorResponse);
 };
 
 export default errorHandler;
