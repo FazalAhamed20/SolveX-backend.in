@@ -25,7 +25,8 @@ const io = new Server(server, {
     origin: FRONTEND_URL,
     methods: ["GET", "POST"],
     credentials: true
-  }
+  },
+  path:'/clan-socket'
 });
 
 app.use(express.json());

@@ -26,6 +26,7 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
     credentials: true
   },
+  path:'chat-socket'
   
 });
 
@@ -42,9 +43,7 @@ app.get('/', (req: Request, res: Response) => {
   });
 });
 
-app.get('/socket.io', (req, res) => {
-  res.send('Socket.IO server is running');
-});
+
 
 app.use('/chat/api', routes(dependencies));
 app.use(errorHandler);
