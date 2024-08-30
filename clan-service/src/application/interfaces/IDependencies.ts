@@ -1,4 +1,4 @@
-import {IUseCases} from './IUseCases'
+import { IUseCases } from './IUseCases'
 import {IRepositories} from '@/application/interfaces/IRepositories'
 
 

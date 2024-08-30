@@ -1,5 +1,5 @@
 export * from './ICreateClanUseCase'
-
+export * from './IFetchAllClansUseCase'
 export * from './IFetchAllMembersUseCase'
 export *  from './IFetchAllUsersUseCase'
 export * from './IAddMemberUseCase'

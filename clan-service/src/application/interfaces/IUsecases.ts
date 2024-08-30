@@ -9,14 +9,15 @@ import {
     IRequestClanUseCase,
     IAcceptClanUseCase,
     ICompleteQuizClanUseCase,
-    IRejectClanUseCase
+    IRejectClanUseCase,
+    IFetchAllClansUseCase
 } from '@/enterprise/useCaseInterface'
 
 
 
 export interface IUseCases{
     createClanUseCase:(dependencies)=>ICreateClanUseCase
-  
+     fetchAllClansUseCase:(dependencies)=>IFetchAllClansUseCase
     fetchAllMembersUseCase:(dependencies)=>IFetchAllMembersUseCase
     fetchAllUsersUseCase:(dependencies)=>IFetchAllUsersUseCase
     addMemberUseCase:(dependencies)=>IAddMemberUseCase

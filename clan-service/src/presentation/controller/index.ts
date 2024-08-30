@@ -12,11 +12,12 @@ import { requestClanController } from "./requestClanController";
 import { acceptClanController } from "./acceptClanController";
 import { completeQuizController } from "./completeQuizController";
 import { rejectClanController } from "./rejectClanController";
+import { fetchAllClanController } from "./fetchAllClansController";
 
 export const controller = (dependencies: IDependencies) => {
     return {
         createClan:createClanController(dependencies),
-        
+        fetchAllClans:fetchAllClanController(dependencies),
         fetchAllMember:fetchAllMemberController(dependencies),
         fetchAllUsers:fetchAllUsersController(dependencies),
         addMember:addMemberController(dependencies),
