@@ -4,7 +4,7 @@ import CircuitBreaker from 'opossum';
 import { sendAcknowledgement } from "./producer/sendAcknowledgement";
 
 const circuitBreakerOptions = {
-    timeout: 3000,
+    timeout: 30000,
     errorThresholdPercentage: 50,
     resetTimeout: 30000
 };

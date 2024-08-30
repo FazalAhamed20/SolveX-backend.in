@@ -2,7 +2,7 @@ import { producer, Topicconsumer as consumer } from "..";
 import CircuitBreaker from 'opossum';
 
 const circuitBreakerOptions = {
-    timeout: 3000,
+    timeout: 30000,
     errorThresholdPercentage: 50,
     resetTimeout: 30000,
 };
