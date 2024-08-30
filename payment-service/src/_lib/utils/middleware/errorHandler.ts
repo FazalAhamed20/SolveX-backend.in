@@ -1,34 +1,23 @@
-import { Request, Response, NextFunction } from 'express';
-
-interface CustomError extends Error {
-  statusCode?: number;
-}
+import { Request, Response } from 'express';
 
 const errorHandler = (
-  err: CustomError,
+  err: Error,
   req: Request,
   res: Response,
-  next: NextFunction
+ 
 ) => {
-  console.error('Error:', err);
+  console.error(err);
 
-  if (!res.headersSent) {
-    const statusCode = err.statusCode || 500;
-    const message = err.message || 'Internal Server Error';
+  const errorResponse = {
+    errors: err.message || 'Something went wrong',
+  };
 
-    try {
-      res.status(statusCode).json({
-        success: false,
-        error: message,
-        stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack
-      });
-    } catch (sendError) {
-      console.error('Error while sending error response:', sendError);
-      res.end('Internal Server Error');
-    }
-  } else {
-    next(err);
-  }
+  return res.status(500).json({
+    success: false,
+    data: errorResponse,
+    message: errorResponse.errors,
+    status: 500,
+  });
 };
 
 export default errorHandler;
