@@ -1,27 +1,33 @@
 import { Request, Response } from 'express';
 import { HttpStatusCode } from '@/_lib/utils/httpStatusCode/httpStatusCodes';
 
+
+interface CustomError extends Error {
+  statusCode?: number;
+}
+
 const errorHandler = (
-  err: Error,
+  err: CustomError,
   req: Request,
   res: Response,
-
 ) => {
-  console.error(err);
+ 
+  console.error('Error:', err);
 
-  console.log('error................',err)
+ 
+  const statusCode = err.statusCode || HttpStatusCode.INTERNAL_SERVER_ERROR;
 
-  const statusCode = (err as any).statusCode || HttpStatusCode.INTERNAL_SERVER_ERROR;
-  console.log('eror..........................',err.message);
 
   const errorResponse = {
     success: false,
-    error: err.message || 'Something went wrong',
+    error: err.message || 'An unexpected error occurred. Please try again later.',
     status: statusCode,
   };
-  console.log('eror..........................',errorResponse);
-  
 
+  
+  console.log('Error Response:', errorResponse);
+
+  
   return res.status(statusCode).json(errorResponse);
 };
 
