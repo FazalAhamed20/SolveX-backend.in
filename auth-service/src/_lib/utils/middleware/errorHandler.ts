@@ -9,7 +9,10 @@ const errorHandler = (
 ) => {
   console.error(err);
 
+  console.log('error................',err)
+
   const statusCode = (err as any).statusCode || HttpStatusCode.INTERNAL_SERVER_ERROR;
+  console.log('eror..........................',err.message);
 
   const errorResponse = {
     success: false,
