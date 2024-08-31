@@ -65,6 +65,7 @@ export const loginController = (dependencies: IDependencies) => {
         isAdmin: result.isAdmin,
       });
     } catch (error) {
+      console.log("error......",error)
       next(error);
     }
   };
