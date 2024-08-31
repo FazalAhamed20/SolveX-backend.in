@@ -16,6 +16,8 @@ const errorHandler = (
     error: err.message || 'Something went wrong',
     status: statusCode,
   };
+  console.log('eror..........................',errorResponse);
+  
 
   return res.status(statusCode).json(errorResponse);
 };
