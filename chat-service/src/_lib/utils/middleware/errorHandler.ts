@@ -1,34 +1,27 @@
-import { Request, Response, NextFunction } from 'express';
-
-interface CustomError extends Error {
-  statusCode?: number;
-}
+// auth/src/middleware/errorHandler.ts
+import { NextFunction, Request, Response } from 'express';
+import { HttpStatusCode } from '@/_lib/utils/httpStatusCode/httpStatusCode';
 
 const errorHandler = (
-  err: CustomError,
+  err: Error,
   req: Request,
   res: Response,
-  next: NextFunction
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  next:NextFunction
+  
 ) => {
-  console.error('Error:', err);
+  console.error(err);
 
-  if (!res.headersSent) {
-    const statusCode = err.statusCode || 500;
-    const message = err.message || 'Internal Server Error';
+  const errorResponse = {
+    errors: err.message || 'Something went wrong',
+  };
 
-    try {
-      res.status(statusCode).json({
-        success: false,
-        error: message,
-        stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack
-      });
-    } catch (sendError) {
-      console.error('Error while sending error response:', sendError);
-      res.end('Internal Server Error');
-    }
-  } else {
-    next(err);
-  }
+  return res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
+    success: false,
+    data: errorResponse,
+    message: errorResponse.errors,
+    status: 500,
+  });
 };
 
 export default errorHandler;

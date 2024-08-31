@@ -1,23 +1,27 @@
-import { Request, Response } from 'express';
+// auth/src/middleware/errorHandler.ts
+import { NextFunction, Request, Response } from 'express';
 import { HttpStatusCode } from '@/_lib/httpStatusCode/httpStatusCode';
 
 const errorHandler = (
   err: Error,
   req: Request,
   res: Response,
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  next:NextFunction
+  
 ) => {
   console.error(err);
 
-  const statusCode = (err as any).statusCode || HttpStatusCode.INTERNAL_SERVER_ERROR;
-
   const errorResponse = {
-    success: false,
-    error: err.message || 'Something went wrong',
-    status: statusCode,
+    errors: err.message || 'Something went wrong',
   };
 
-  return res.status(statusCode).json(errorResponse);
+  return res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
+    success: false,
+    data: errorResponse,
+    message: errorResponse.errors,
+    status: 500,
+  });
 };
 
 export default errorHandler;
