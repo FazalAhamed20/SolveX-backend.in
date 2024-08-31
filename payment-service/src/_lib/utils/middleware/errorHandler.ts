@@ -11,6 +11,7 @@ const errorHandler = (
   const errorResponse = {
     errors: err.message || 'Something went wrong',
   };
+  console.log('payment error',errorResponse,errorResponse.errors)
 
   return res.status(500).json({
     success: false,
