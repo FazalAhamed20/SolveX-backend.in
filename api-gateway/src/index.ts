@@ -29,5 +29,5 @@ app.use('/chat', proxy('http://localhost:3006/'));
 
 
 app.listen(port, () => {
-    console.log('Gateway running successfully');
+    
 });

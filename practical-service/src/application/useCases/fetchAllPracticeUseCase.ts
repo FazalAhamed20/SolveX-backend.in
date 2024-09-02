@@ -8,7 +8,7 @@ export const fetchAllPracticeUseCase = (dependencies: IDependencies) => {
   return {
     execute: async () => {
       const practiceList = await fetchPractice();
-      console.log('🚀 ~ execute:async ~ userList:', practiceList);
+      
 
       return practiceList;
     },

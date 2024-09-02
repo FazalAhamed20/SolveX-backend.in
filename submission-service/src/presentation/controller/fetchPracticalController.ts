@@ -11,7 +11,7 @@ export const fetchPracticalController = (dependencies: IDependencies) => {
 
             const result = await fetchPracticalUseCase(dependencies).execute(email, id)
 
-            console.log('Result:', result)
+            
 
             if (result === null) {
                 res.send({ success: false })

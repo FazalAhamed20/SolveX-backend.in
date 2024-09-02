@@ -15,7 +15,7 @@ export const createSubscription = async (data: SubscriptionEntity): Promise<Subs
 
   const newSubscription = new Subscription(data);
   const savedSubscription = await newSubscription.save();
-  console.log('saved subs',savedSubscription)
+  
 
   return savedSubscription.toObject() as SubscriptionEntity;
 };

@@ -7,7 +7,7 @@ export const refreshToken = async (
   email: string,
 ): Promise<UserEntity | null> => {
   const user = await User.findOne({ email });
-  console.log('email', email);
+  
 
   if (!user || !user.refreshToken) {
     throw new Error('Invalid user session');

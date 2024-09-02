@@ -12,7 +12,7 @@ export const createPaymentController = (dependencies:IDependencies) => {
   } = dependencies;
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log('req', req.body);
+      
 
       const { payment_method_id, amount ,subscriptionId,interval,userId } = req.body;
 
@@ -27,7 +27,7 @@ export const createPaymentController = (dependencies:IDependencies) => {
         },
       });
       if (paymentIntent.status === 'succeeded') {
-        console.log("g");
+        
         
         const result = await createPaymentUseCase(dependencies).execute(amount, interval, subscriptionId, payment_method_id,userId);
         res.send({ success: !!result });

@@ -45,8 +45,8 @@ export const fetchProblemsController = () => {
       const { id, title } = req.params;
       const { language } = req.query;
 
-      console.log(`Fetching problem with ID: ${id} and Title: ${title}`);
-      console.log(`Language: ${language}`);
+      
+      
 
       const problemFolder = `${id}-${title}`;
       const inputContent = await fetchFileContent(`${problemFolder}/input.txt`);
@@ -68,7 +68,7 @@ export const fetchProblemsController = () => {
         return res.status(400).json({ message: 'Invalid output format' });
       }
 
-      console.log('Output:', outputJson);
+      
 
       let solutionTemplate = '';
       let driverContent = '';
@@ -86,9 +86,9 @@ export const fetchProblemsController = () => {
         driverContent = await fetchFileContent(`${languageFolder}/driver.${ext}`);
         displayContent = await fetchFileContent(`${languageFolder}/display.${ext}`);
 
-        console.log('Solution Template:', solutionTemplate);
-        console.log('Driver Content:', driverContent);
-        console.log('Display Content:', displayContent);
+        
+        
+        
       }
 
       res.status(HttpStatusCode.OK).json({

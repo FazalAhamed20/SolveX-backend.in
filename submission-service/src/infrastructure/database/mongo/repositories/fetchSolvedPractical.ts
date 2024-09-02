@@ -12,7 +12,7 @@ export const fetchSolvedPractical = async (email: string): Promise<PracticeSubmi
       return null;
     }
 
-    console.log('Submissions:', submissions);
+    
     return submissions;
   
  

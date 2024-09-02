@@ -26,7 +26,7 @@ export const deleteMessage = async (messageId: any): Promise<MessageEntity | str
 
       try {
         await cloudinary.v2.uploader.destroy(publicId);
-        console.log("Image deleted from Cloudinary successfully.");
+        
       } catch (error) {
         console.error("Error deleting image from Cloudinary:", error);
         return "Error deleting image from Cloudinary";
@@ -40,7 +40,7 @@ export const deleteMessage = async (messageId: any): Promise<MessageEntity | str
 
       try {
         await cloudinary.v2.uploader.destroy(publicId);
-        console.log("Voice file deleted from Cloudinary successfully.");
+        
       } catch (error) {
         console.error("Error deleting voice file from Cloudinary:", error);
         return "Error deleting voice file from Cloudinary";

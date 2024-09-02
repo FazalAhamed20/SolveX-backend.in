@@ -16,7 +16,7 @@ export const problemListController = (dependencies: IDependencies) => {
 
       const fetch=await fetchAllProblemUseCase(dependencies).execute()
 
-      console.log("fetch",fetch);
+      
       
       
       

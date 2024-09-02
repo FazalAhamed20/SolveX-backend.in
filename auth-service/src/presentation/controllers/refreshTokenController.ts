@@ -10,13 +10,13 @@ export const refreshTokenController = (dependencies: IDependencies) => {
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log('refresh token request: ', req.body);
+      
 
       const result = await refreshTokenUseCase(dependencies).execute(
         req.body.email,
       );
 
-      console.log('result: ', result);
+      
 
       if (result) {
         const accessToken = generateAccessToken({

@@ -14,12 +14,12 @@ export const rejectClanController = (dependencies:IDependencies) => {
        
         const { clanId, userId } = req.body;
 
-        console.log('..............',clanId,userId);
+        
         
 
       const result=await rejectClanUseCase(dependencies).execute(clanId,userId)
 
-      console.log("result........|........",result)
+      
       if (typeof result === 'string') {
         
         res.status(HttpStatusCode.BAD_REQUEST).send(result);

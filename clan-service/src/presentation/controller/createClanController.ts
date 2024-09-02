@@ -11,11 +11,11 @@ export const createClanController = (dependencies:IDependencies) => {
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(req.body);
+      
 
       const result=await createClanUseCase(dependencies).execute(req.body)
 
-      console.log("result........|........",result)
+      
       await clanCreatedProducer(result)
 
 

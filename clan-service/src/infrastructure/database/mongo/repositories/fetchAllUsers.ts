@@ -15,10 +15,10 @@ interface UserDocument {
 export const fetchAllUsers = async (): Promise<UserEntity[] | null> => {
   
     const result = await User.find({}).lean();
-    console.log("Fetched users:", result);
+    
     
     if (!result || result.length === 0) {
-      console.log("No users found");
+      
       return null;
     }
 

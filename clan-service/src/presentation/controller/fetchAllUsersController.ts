@@ -14,7 +14,7 @@ export const fetchAllUsersController = (dependencies:IDependencies) => {
 
       const result =await fetchAllUsersUseCase(dependencies).execute()
 
-      console.log("result........................'",result)
+      
 
       res.status(HttpStatusCode.OK).send(result)
      

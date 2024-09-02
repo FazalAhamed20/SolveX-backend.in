@@ -8,7 +8,7 @@ export const getAllSubscriptionUseCase = (dependencies: IDependencies) => {
   return {
     execute: async () => {
       const subscriptionsList = await getAllSubscription();
-      console.log('🚀 ~ execute:async ~ subscriptionsList:', subscriptionsList);
+      
 
       return subscriptionsList;
     },

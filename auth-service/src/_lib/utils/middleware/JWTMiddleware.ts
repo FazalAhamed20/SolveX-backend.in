@@ -14,10 +14,10 @@ declare global {
  const checkAuth = (req: Request, res: Response, next: NextFunction) => {
   const accessToken = req.cookies.access_token;
 
-  console.log('accessToken', accessToken);
+  
 
   if (!accessToken) {
-    console.log('access expired');
+    
 
     return res.status(401).json({ message: 'Unauthorized', status: 401 });
   }

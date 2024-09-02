@@ -8,7 +8,7 @@ export const fetchAllSubmissionUseCase = (dependencies: IDependencies) => {
   return {
     execute: async () => {
       const SubmissionList = await fetchAllSubmission();
-      console.log('🚀 ~ execute:async ~ userList:', SubmissionList);
+      
 
       return SubmissionList;
     },

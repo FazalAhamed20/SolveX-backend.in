@@ -19,7 +19,7 @@ export const sendAcknowledgement = async (topic: string, key: string, value: any
     try {
         await producer.connect();
         await producer.send(ackMessage);
-        console.log(`Acknowledgement sent to ${ackTopic}`);
+        
     } catch (error) {
         console.error('Error sending acknowledgement:', error);
     } finally {

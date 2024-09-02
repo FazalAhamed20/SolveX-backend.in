@@ -27,7 +27,7 @@ export const deleteMember = async (clanId: string, memberId: string, memberName:
       
         const updatedClan = await clan.save();
         
-       console.log("updated clan",updatedClan)
+       
         return updatedClan.toObject() as ClanEntity;
 
    

@@ -13,12 +13,12 @@ export const leaveClanController = (dependencies:IDependencies) => {
     try {
         const { clanId, _id,memberName } = req.body;
 
-        console.log('..............',clanId,_id,memberName);
+        
         
 
       const result=await deleteMemberUseCase(dependencies).execute(clanId,_id,memberName)
 
-      console.log("result........|........",result)
+      
       if (typeof result === 'string') {
         
         res.status(HttpStatusCode.BAD_REQUEST).send(result);

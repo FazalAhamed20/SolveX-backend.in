@@ -8,7 +8,7 @@ export const getUsersUseCase = (dependencies: IDependencies) => {
   return {
     execute: async () => {
       const userList = await getUser();
-      console.log('🚀 ~ execute:async ~ userList:', userList);
+      
 
       return userList;
     },

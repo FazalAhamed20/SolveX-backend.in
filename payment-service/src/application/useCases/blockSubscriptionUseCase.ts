@@ -7,7 +7,7 @@ export const blockSubscriptionUseCase = (dependencies: IDependencies) => {
   } = dependencies;
   return {
     execute: async (data: SubscriptionEntity) => {
-        console.log("usecase",data);
+        
         
       return await blockSubscription(data);
     },

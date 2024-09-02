@@ -12,7 +12,7 @@ export const getAllProblemsUseCase = (dependencies: IDependencies) => {
     execute: async (data:ProblemEntity[]) => {
       
       
-      console.log("data",data);
+      
       
         
         return await problemData(data)

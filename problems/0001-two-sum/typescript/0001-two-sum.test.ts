@@ -15,17 +15,17 @@ input.forEach((testCase, index) => {
     const actualOutput = twoSum(nums, target);
 
     if (JSON.stringify(actualOutput) === JSON.stringify(expectedOutput[index])) {
-        console.log(`Test case ${index + 1} passed.`);
+        
     } else {
-        console.log(`Test case ${index + 1} failed.`);
-        console.log(`Expected: ${JSON.stringify(expectedOutput[index])}`);
-        console.log(`Got: ${JSON.stringify(actualOutput)}`);
+        
+        }`);
+        }`);
         allTestsPassed = false;
     }
 });
 
 if (allTestsPassed) {
-    console.log('All test cases passed!');
+    
 } else {
-    console.log('Some test cases failed.');
+    
 }

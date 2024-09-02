@@ -4,7 +4,7 @@ import { ProblemEntity } from '@/enterprise/entities';
 export const blockProblem = async (
   data: Pick<ProblemEntity, '_id' | 'isBlocked' | 'isPremium'>,
 ): Promise<ProblemEntity | null> => {
-  console.log('repo', data);
+  
 
   const updateField: Partial<Pick<ProblemEntity, 'isBlocked' | 'isPremium'>> = {};
 
@@ -16,7 +16,7 @@ export const blockProblem = async (
   }
 
   if (Object.keys(updateField).length === 0) {
-    console.log('No valid field to update');
+    
     return null;
   }
 
@@ -27,10 +27,10 @@ export const blockProblem = async (
 
   if (result.modifiedCount > 0) {
     const updatedProblem = await Problem.findOne({ _id: data._id });
-    console.log('Updated problem', updatedProblem);
+    
     return updatedProblem;
   } else {
-    console.log('No problem found or no changes made');
+    
     return null;
   }
 };

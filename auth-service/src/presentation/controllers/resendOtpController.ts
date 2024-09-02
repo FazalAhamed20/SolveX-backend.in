@@ -12,13 +12,13 @@ export const resendOtpController = (dependencies: IDependencies) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       const userData = req.body.email;
-      console.log(userData);
+      
 
       const credentials = {
         email: userData,
         otp: await generateOTP(),
       };
-      console.log(credentials.email);
+      
 
       sendOTP(credentials.email, credentials.otp);
 
@@ -26,7 +26,7 @@ export const resendOtpController = (dependencies: IDependencies) => {
       if (!result) {
         throw new Error('OTP creation failed');
       }
-      console.log('result', result);
+      
 
       res
         .status(HttpStatusCode.CREATED)

@@ -19,9 +19,9 @@ export default async (
       );
 
       if (updatedUser) {
-        console.log("User updated:", updatedUser);
+        
       } else {
-        console.log("User not found for update");
+        
       }
     } else {
       // If other fields are provided, create a new user
@@ -32,10 +32,10 @@ export default async (
         isBlocked: data.isBlocked
       });
 
-      console.log("New user created:", newUser);
+      
       await newUser.save();
     }
   } catch (error: any) {
-    console.log(error?.message);
+    
   }
 };

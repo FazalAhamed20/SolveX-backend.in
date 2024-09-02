@@ -28,7 +28,7 @@ export default async (
                     },
                     { new: true }
                 );
-                console.log("Problem updated:", updatedProblem);
+                
             } else {
                 // Create new problem
                 const newProblem = new Problem({
@@ -40,11 +40,11 @@ export default async (
                     language: problemData.language
                 });
 
-                console.log("New problem created:", newProblem);
+                
                 await newProblem.save();
             }
         }
     } catch (error: any) {
-        console.log(error?.message);
+        
     }
 };

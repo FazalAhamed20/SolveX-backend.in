@@ -11,11 +11,11 @@ export const addMemberController = (dependencies: IDependencies) => {
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log("req.body", req.body);
+      
 
       const result = await addMemberUseCase(dependencies).execute(req.body);
 
-      console.log("result........|........", result);
+      
 
       if (typeof result === 'string') {
         

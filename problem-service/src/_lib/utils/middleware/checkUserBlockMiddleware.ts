@@ -7,7 +7,7 @@ const checkUserBlockedMiddleware = () => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const accessToken = req.cookies.access_token;
 
-    console.log("accesstoken.............",accessToken);
+    
     
 
     if (!accessToken) {
@@ -23,7 +23,7 @@ const checkUserBlockedMiddleware = () => {
         const user = await User.findOne({ _id: decoded._id, email: decoded.email });
 
 
-        console.log("user.........",user)
+        
         
         if (user && user.isBlocked) {
           

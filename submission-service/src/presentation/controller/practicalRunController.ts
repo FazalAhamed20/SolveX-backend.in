@@ -12,12 +12,12 @@ export const practicalRunController = (dependencies: IDependencies) => {
     const { useCases: { practicalSubmitUseCase } } = dependencies;
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            console.log(".....", req.body);
+            
             
             const { code, input, output,id,language,title,email } = req.body;
-            console.log("code", code);
-            console.log("input", input);
-            console.log("output", output);
+            
+            
+            
 
             if (typeof code !== 'string' || code.trim() === '') {
                 return res.status(400).json({ error: 'Invalid code provided' });
@@ -28,7 +28,7 @@ export const practicalRunController = (dependencies: IDependencies) => {
                 
                 const [arr, index, value] = ${JSON.stringify(input)};
                 const result = insertElement(arr, index, value);
-                console.log(JSON.stringify(result));
+                );
             `;
 
             const fileName = 'tempScript.js';
@@ -43,7 +43,7 @@ export const practicalRunController = (dependencies: IDependencies) => {
             } else {
                 const userOutput = stdout.trim();
                 const expectedOutput = JSON.stringify(output);
-                console.log(userOutput, expectedOutput);
+                
                 
                 const isCorrect = userOutput === expectedOutput;
                
@@ -58,7 +58,7 @@ export const practicalRunController = (dependencies: IDependencies) => {
                     }
                   
                     const result = await practicalSubmitUseCase(dependencies).execute(data)
-                    console.log("result",result)
+                    
                     
                     res.json({ 
                         output: userOutput,

@@ -13,7 +13,7 @@ export const fetchAllClanController = (dependencies: IDependencies) => {
     
       const result: ClanEntity[] | null = await fetchAllClansUseCase(dependencies).execute();
 
-      console.log("result.....", result);
+      
 
     
       const response = result || [];

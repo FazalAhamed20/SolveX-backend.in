@@ -14,7 +14,7 @@ export const fetchPractical = async (
       if (!submission) {
         return null;
       }
-  console.log('.../.../',submission)
+  
       return submission as PracticeSubmissionEntity;
     
   };

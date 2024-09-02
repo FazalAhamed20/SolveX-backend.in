@@ -13,7 +13,7 @@ export const verifyOtpController = (dependencies: IDependencies) => {
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log('Request body verify:', req.body);
+      
 
       const { value, error } = signupValidation.validate(req.body);
       if (error) {
@@ -24,10 +24,10 @@ export const verifyOtpController = (dependencies: IDependencies) => {
 
       value.password = await hashPassword(value.password);
 
-      console.log('refresh', value);
+      
 
       const result = await verifyOtpUseCase(dependencies).execute(value);
-      console.log('result', result);
+      
 
       if (!result) {
         return res.status(400).json({

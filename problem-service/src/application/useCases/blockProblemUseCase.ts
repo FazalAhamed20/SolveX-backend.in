@@ -7,7 +7,7 @@ export const blockProblemUseCase = (dependencies: IDependencies) => {
   } = dependencies;
   return {
     execute: async (data: ProblemEntity) => {
-        console.log("usecase",data);
+        
         
       return await blockProblem(data);
     },

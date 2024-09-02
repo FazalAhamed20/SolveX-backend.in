@@ -12,7 +12,7 @@ export const checkMailController = (dependencies: IDependencies) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       const userData = req.body.email;
-      console.log('userData', userData);
+      
 
       const credentials = {
         email: userData,
@@ -22,7 +22,7 @@ export const checkMailController = (dependencies: IDependencies) => {
       const existEmail = await findByEmailUseCase(dependencies).execute(
         credentials.email,
       );
-      console.log(existEmail);
+      
 
       if (existEmail) {
         sendOTP(credentials.email, credentials.otp);

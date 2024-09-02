@@ -13,12 +13,12 @@ export const getMessagesController = (dependencies:IDependencies) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { clanId } = req.params;
-        console.log(clanId)
+        
 
 
       const result=await getMessagesUseCase(dependencies).execute(clanId)
 
-      console.log("image",result)
+      
       
      
       res.status(HttpStatusCode.OK).send(result)

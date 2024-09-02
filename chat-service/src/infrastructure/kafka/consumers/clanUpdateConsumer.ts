@@ -19,7 +19,7 @@ interface ClanData {
 }
 
 export default async (clanData: ClanData) => {
-  console.log("Update clan request:", clanData);
+  
 
   try {
     const clanId = clanData._id;
@@ -42,7 +42,7 @@ export default async (clanData: ClanData) => {
     clan.set('members', updatedMembers);
     await clan.save();
 
-    console.log("Clan updated:", clan);
+    
     return clan;
   } catch (error) {
     console.error("Error updating clan:", error);

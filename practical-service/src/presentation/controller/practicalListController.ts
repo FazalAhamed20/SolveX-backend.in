@@ -16,7 +16,7 @@ export const practicalListController = (dependencies: IDependencies) => {
 
       const fetch=await fetchAllPracticeUseCase(dependencies).execute()
 
-      console.log("fetch",fetch);
+      
       
       
       

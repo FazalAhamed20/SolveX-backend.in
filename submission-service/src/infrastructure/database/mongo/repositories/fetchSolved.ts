@@ -12,7 +12,7 @@ export const fetchSolved = async (email: string): Promise<SubmissionEntity[] | n
       return null;
     }
 
-    console.log('Submissions:', submissions);
+    
     return submissions;
  
 };

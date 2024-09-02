@@ -6,7 +6,7 @@ export const getUser = async (): Promise<UserEntity[]> => {
     { username: { $ne: 'Admin' } },
     { username: 1, email: 1, isBlocked: 1 },
   );
-  console.log(users);
+  
 
   return users;
 };

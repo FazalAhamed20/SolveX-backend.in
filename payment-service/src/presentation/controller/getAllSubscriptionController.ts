@@ -12,7 +12,7 @@ export const getAllSubscriptionController = (dependencies: IDependencies) => {
     try {
       const result = await getAllSubscriptionUseCase(dependencies).execute();
 
-      console.log(result);
+      
 
       res.status(HttpStatusCode.OK).json({ success: true, data: result, message: 'get all subscription ' });
     } catch (error) {

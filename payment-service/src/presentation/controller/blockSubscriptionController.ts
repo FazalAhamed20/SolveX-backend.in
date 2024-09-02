@@ -9,13 +9,13 @@ export const blockSubscriptionController = (dependencies: IDependencies) => {
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log("body.....",req.body);
+      
       const result = await blockSubscriptionUseCase(dependencies).execute(req.body);
 
       if (!result) {
         throw new Error('Blocking Subscription Failed');
       }
-      console.log("Subscription",result);
+      
       
       res.status(HttpStatusCode.OK).json({
         success: true,

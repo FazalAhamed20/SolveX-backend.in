@@ -12,18 +12,18 @@ export const signUpController = (dependencies: IDependencies) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       const userData = req.body.email;
-      console.log(userData);
+      
 
       const credentials = {
         email: userData,
         otp: await generateOTP(),
       };
-      console.log(credentials.email);
+      
 
       const existEmail = await findByEmailUseCase(dependencies).execute(
         credentials.email,
       );
-      console.log(existEmail);
+      
 
       if (existEmail) {
         throw new Error('User already exist');
@@ -35,7 +35,7 @@ export const signUpController = (dependencies: IDependencies) => {
       if (!result) {
         throw new Error('OTP creation failed');
       }
-      console.log('result', result);
+      
 
       res
         .status(HttpStatusCode.CREATED)

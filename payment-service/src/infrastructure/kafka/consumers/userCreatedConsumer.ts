@@ -20,9 +20,9 @@ export default async (
       );
 
       if (updatedUser) {
-        console.log("User updated:", updatedUser);
+        
       } else {
-        console.log("User not found for update");
+        
       }
     } else {
       
@@ -34,10 +34,10 @@ export default async (
         profileImage:data.profileImage
       });
 
-      console.log("New user created:", newUser);
+      
       await newUser.save();
     }
   } catch (error: any) {
-    console.log(error?.message);
+    
   }
 };

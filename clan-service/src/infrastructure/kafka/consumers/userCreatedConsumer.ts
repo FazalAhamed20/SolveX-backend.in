@@ -11,7 +11,7 @@ export default async (
   }
 ) => {
   try {
-    console.log('data',data)
+    
     if (Object.keys(data).length === 2 && data.email && 'isBlocked' in data) {
     
       const updatedUser = await User.findOneAndUpdate(
@@ -21,9 +21,9 @@ export default async (
       );
 
       if (updatedUser) {
-        console.log("User updated:", updatedUser);
+        
       } else {
-        console.log("User not found for update");
+        
       }
     } else {
       
@@ -35,10 +35,10 @@ export default async (
         profileImage:data.profileImage
       });
 
-      console.log("New user created:", newUser);
+      
       await newUser.save();
     }
   } catch (error: any) {
-    console.log(error?.message);
+    
   }
 };

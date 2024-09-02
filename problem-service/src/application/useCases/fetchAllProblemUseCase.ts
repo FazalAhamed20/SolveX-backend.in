@@ -8,7 +8,7 @@ export const fetchAllProblemUseCase = (dependencies: IDependencies) => {
   return {
     execute: async () => {
       const problemList = await fetchProblem();
-      console.log('🚀 ~ execute:async ~ userList:', problemList);
+      
 
       return problemList;
     },

@@ -11,7 +11,7 @@ export const reactMessageController = (dependencies:IDependencies) => {
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log("reaction",req.body)
+      
 
 
       const result=await reactMessageUseCase(dependencies).execute(req.body)

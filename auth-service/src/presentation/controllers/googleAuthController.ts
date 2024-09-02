@@ -11,12 +11,12 @@ export const googleAuthController = (dependencies: IDependencies) => {
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log('Google Auth Request Body:', req.body);
+      
 
       const { name, email } = req.body;
 
       let password = generateRandomString();
-      console.log('Generated Password:', password);
+      
       password = await hashPassword(password);
 
       const value = {
@@ -34,7 +34,7 @@ export const googleAuthController = (dependencies: IDependencies) => {
           status: 400,
         });
       }
-      console.log(result);
+      
 
       const accessToken = generateAccessToken({
         _id: String(result._id),
@@ -49,7 +49,7 @@ export const googleAuthController = (dependencies: IDependencies) => {
         maxAge: 600 * 1000,
       });
 
-      console.log('Access Token:', accessToken);
+      
       await userCreatedProducer(result);
 
       res.status(HttpStatusCode.CREATED).json({
@@ -68,7 +68,7 @@ export const googleAuthController = (dependencies: IDependencies) => {
         message: 'User created successfully',
       });
     } catch (error) {
-      console.log('...........................', error);
+      
 
       next(error);
     }

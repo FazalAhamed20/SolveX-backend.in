@@ -2,17 +2,17 @@ import { Server, Socket } from 'socket.io';
 
 function notificationHandler(io: Server): void {
   io.on('connection', (socket: Socket) => {
-    console.log("Socket Connection established");
+    
 
     socket.on('joinRoom', (userId: string) => {
       socket.join(userId);
-      console.log(`User ${userId} joined room ${userId}`);
+      
     });
 
     socket.on('joinRequest', (data) => {
-      console.log("Received join request:", data);
+      
       const { clanId, userId, userName, clanName, leaderId } = data;
-      console.log('userName',userName)
+      
 
       try {
         io.to(leaderId).emit('joinRequestNotification', {
@@ -26,7 +26,7 @@ function notificationHandler(io: Server): void {
           clanId: clanId,
           clanName:clanName
         });
-        console.log(`Notification sent to leader ${leaderId}`);
+        
 
         // Notify the user who sent the request
         io.to(userId).emit('requestPendingNotification', {
@@ -38,7 +38,7 @@ function notificationHandler(io: Server): void {
             clanName: clanName,
           },
         });
-        console.log(`Pending notification sent to user ${userId}`);
+        
 
        
        
@@ -48,7 +48,7 @@ function notificationHandler(io: Server): void {
       }
     });
     socket.on('acceptRequest', (data) => {
-      console.log("Received accept request:", data);
+      
       const { clanId, userId, clanName} = data;
 
       try {
@@ -61,14 +61,14 @@ function notificationHandler(io: Server): void {
             clanName: clanName,
           },
         });
-        console.log(`Accept notification sent to user ${userId}`);
+        
 
       } catch (error) {
         console.error("Error sending acceptance notification:", error);
       }
     });
     socket.on('rejectRequest', (data) => {
-      console.log("Received reject request:", data);
+      
       const { clanId, userId, clanName } = data;
 
       try {
@@ -81,14 +81,14 @@ function notificationHandler(io: Server): void {
             clanName: clanName,
           },
         });
-        console.log(`Reject notification sent to user ${userId}`);
+        
 
       } catch (error) {
         console.error("Error sending rejection notification:", error);
       }
     });
     socket.on('removeRequest', (data) => {
-      console.log("Received remove request:", data);
+      
       const { clanId, userId, clanName } = data;
 
       try {
@@ -101,7 +101,7 @@ function notificationHandler(io: Server): void {
             clanName: clanName,
           },
         });
-        console.log(`Reject notification sent to user ${userId}`);
+        
 
       } catch (error) {
         console.error("Error sending rejection notification:", error);
@@ -115,7 +115,7 @@ function notificationHandler(io: Server): void {
          
           io.emit('notificationMarkedAsRead', { notificationIds });
 
-        console.log("messageId",notificationIds)
+        
       } catch (error) {
         console.error('Error marking notification as read:', error);
       }

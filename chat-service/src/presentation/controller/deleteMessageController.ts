@@ -13,12 +13,12 @@ export const deleteMessageController = (dependencies:IDependencies) => {
     try {
         const { messageId } = req.params;
 
-        console.log('....',messageId);
+        
         
 
-      const result=await deleteMessageUseCase(dependencies).execute(messageId)
+      await deleteMessageUseCase(dependencies).execute(messageId)
 
-      console.log("result........|........",result)
+      
     
         res.status(HttpStatusCode.OK).send({success:true})
     

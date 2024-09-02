@@ -7,7 +7,7 @@ export const refreshUseCase = (dependencies: IDependencies) => {
   return {
     execute: async (email: string, refreshToken: string) => {
       const result = await refresh(email, refreshToken);
-      console.log(result);
+      
 
       if (!result) {
         throw new Error('refresh token not supported');

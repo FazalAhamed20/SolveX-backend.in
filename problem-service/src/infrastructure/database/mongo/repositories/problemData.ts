@@ -3,7 +3,7 @@ import { ProblemEntity } from "@/enterprise/entities";
 
 export const problemData = async (data: ProblemEntity[]): Promise<ProblemEntity[] | null> => {
 
-    console.log("repo", data);
+    
     
    
     const existingProblems = await Problem.find({ 
@@ -26,13 +26,13 @@ export const problemData = async (data: ProblemEntity[]): Promise<ProblemEntity[
     );
 
     if (newData.length === 0) {
-      console.log("All problems already exist, skipping insert.");
+      
       return existingProblems; 
     }
 
    
     const result = await Problem.insertMany(newData);
-    console.log("Inserted new problems:", result);
+    
     return result;
  
   

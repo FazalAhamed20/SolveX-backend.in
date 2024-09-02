@@ -16,10 +16,10 @@ export const runConsumer = async () => {
 
       const value = JSON.parse(message.value.toString());
 
-      console.log(`Received acknowledgement from ${topic}`);
-      console.log(`Original Key: ${value.originalKey}`);
-      console.log(`Status: ${value.status}`);
-      console.log(`Timestamp: ${value.timestamp}`);
+      
+      
+      
+      
 
       await handleAcknowledgement(value);
     },
@@ -27,14 +27,14 @@ export const runConsumer = async () => {
 };
 
 async function handleAcknowledgement(ackData: any) {
-  console.log('Handling acknowledgement:', ackData);
+  
 }
 
 export const stopConsumer = async () => {
   try {
     await consumer.stop();
     await consumer.disconnect();
-    console.log('Acknowledgement listener stopped and disconnected');
+    
   } catch (error: any) {
     console.error('Error stopping acknowledgement listener:', error.message);
   }

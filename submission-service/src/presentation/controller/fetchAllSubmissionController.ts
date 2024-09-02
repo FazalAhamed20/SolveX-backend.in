@@ -17,7 +17,7 @@ export const fetchAllSubmissionController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            console.log("Fetching submissions...");
+            
 
             const result: SubmissionEntity[] | null = await fetchAllSubmissionUseCase(dependencies).execute();
 
@@ -25,7 +25,7 @@ export const fetchAllSubmissionController = (dependencies: IDependencies) => {
                 return res.status(200).json([]);
             }
 
-            console.log('Results:', result);
+            
 
            
             const processedResult: ProcessedSubmission[] = result.map(submission => ({
@@ -39,7 +39,7 @@ export const fetchAllSubmissionController = (dependencies: IDependencies) => {
 
             const sortedResult = processedResult.sort((a, b) => b.points - a.points);
 
-            console.log("sorted",sortedResult)
+            
 
             res.json(sortedResult);
         } catch (error) {

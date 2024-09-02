@@ -24,7 +24,7 @@ export const getAllPracticeController = (dependencies: IDependencies) => {
           }
         }
       );
-      console.log("response",response.data)
+      
       return response.data
     } catch (error) {
       console.error('Error fetching practical data from GitHub:', error);
@@ -35,13 +35,13 @@ export const getAllPracticeController = (dependencies: IDependencies) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       const practical = await fetchPracticalDataFromGithub();
-      console.log("Practical exercises:", practical);
+      
       
       await getAllPracticeUseCase(dependencies).execute(practical);
 
       const fetch = await fetchAllPracticeUseCase(dependencies).execute();
 
-      console.log("Fetched practical exercises:", fetch);
+      
       
       await practicalProducer(fetch);
       

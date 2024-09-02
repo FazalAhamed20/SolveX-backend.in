@@ -12,7 +12,7 @@ export const checkSubscriptionController = (dependencies: IDependencies) => {
 
       const result = await checkSubscriptionUseCase(dependencies).execute(userId);
 
-      console.log('result', result);
+      
 
       if (result) {
         res.status(200).json({ success: true, data: result });

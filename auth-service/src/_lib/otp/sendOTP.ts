@@ -24,7 +24,7 @@ export const sendOTP = async (email: string, otp: number | string) => {
   transporter.sendMail(mailData, (error) => {
     return new Promise((resolve, reject) => {
       if (error) {
-        console.log('Error occured while sending the OTP', error);
+        
         reject(false);
       } else {
         resolve(true);

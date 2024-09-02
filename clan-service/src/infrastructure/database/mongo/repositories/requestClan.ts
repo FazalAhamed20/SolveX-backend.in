@@ -9,12 +9,12 @@ export const requestClan = async (clanId: string, userId: string): Promise<ClanE
             return `Clan with ID ${clanId} not found.`;
         }
 
-        console.log("Original clan requests:", clan.request);
+        
 
         const user = await User.findById(userId, 'username');
 
 
-        console.log(".............",user)
+        
 
        
         clan.request.push({ userId: userId, status: "Pending",username:user?.username });
@@ -22,7 +22,7 @@ export const requestClan = async (clanId: string, userId: string): Promise<ClanE
         
         const updatedClan = await clan.save();
 
-        console.log("Updated clan requests:", updatedClan.request);
+        
         
         return updatedClan as unknown as ClanEntity;
     } catch (error) {

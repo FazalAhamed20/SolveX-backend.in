@@ -9,6 +9,6 @@ export const main = async () => {
    await database()
     
   } catch (error: any) {
-    console.log(`Oops!`, error?.message)
+    
   }
 }

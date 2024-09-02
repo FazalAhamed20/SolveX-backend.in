@@ -33,12 +33,12 @@ export const fetchPracticeController = () => {
       const { language } = req.query;
       const { id } = req.params;
 
-      console.log('Fetching practice data for:', language, id);
+      
 
       const basePath = `${language}/${id}`;
       
       const solutionTemplate = await fetchFileContent(`${basePath}/solution.template.js`);
-      console.log("solution", solutionTemplate);
+      
 
       const inputContent = await fetchFileContent(`${basePath}/input.txt`);
       let inputJson: any[];
@@ -52,7 +52,7 @@ export const fetchPracticeController = () => {
       const outputContent = await fetchFileContent(`${basePath}/output.txt`);
    
 
-      console.log('.....', language, inputJson, outputContent, solutionTemplate);
+      
 
       res.status(HttpStatusCode.OK).json({
         language,

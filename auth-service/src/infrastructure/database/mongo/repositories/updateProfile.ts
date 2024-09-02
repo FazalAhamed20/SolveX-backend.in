@@ -40,19 +40,15 @@ export const updateProfile = async (
       const uploadIndex = urlParts.lastIndexOf('upload');
       const publicId = 'upload/' + urlParts.slice(uploadIndex + 1).join('/').split('.')[0];
 
-      console.log('Current profile image URL:', currentUser.profileImage);
-      console.log('Extracted public ID:', publicId);
+      
+      
   
       if (publicId) {
        
-        const result = await cloudinary.uploader.destroy(publicId);
-        console.log('result.',result)
+          await cloudinary.uploader.destroy(publicId);
         
-        if (result.result === 'ok') {
-          console.log('Image successfully deleted from Cloudinary');
-        } else {
-          console.error('Failed to delete image from Cloudinary:', result);
-        }
+        
+       
       }
     } catch (error) {
       console.error('Error deleting image from Cloudinary:', error);

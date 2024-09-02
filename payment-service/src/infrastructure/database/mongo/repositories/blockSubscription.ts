@@ -4,7 +4,7 @@ import { SubscriptionEntity } from '@/enterprise/entities';
 export const blockSubscription = async (
   data: SubscriptionEntity,
 ): Promise<SubscriptionEntity | null> => {
-  console.log('repo', data);
+  
 
 
   const result = await Subscription.updateOne(
@@ -18,7 +18,7 @@ export const blockSubscription = async (
 
     if (updatedSubscriptionDoc) {
       const updatedSubscription = updatedSubscriptionDoc.toObject() as SubscriptionEntity;
-      console.log('Updated Subscription', updatedSubscription);
+      
       return updatedSubscription;
     }
   }

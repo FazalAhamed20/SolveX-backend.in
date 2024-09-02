@@ -30,11 +30,11 @@ export const blockClan = async (
             isBlocked:updatedClan.isBlocked
         };
 
-        console.log('Updated updatedClan', transformedClan);
+        
         return transformedClan;
       }
     } else {
-      console.log('No updatedClan found or no changes made');
+      
     }
 
     return null;

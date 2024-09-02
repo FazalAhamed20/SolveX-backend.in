@@ -3,7 +3,7 @@ import { PracticeEntity } from "@/enterprise/entities";
 
 export const practiceData = async (data: PracticeEntity[]): Promise<PracticeEntity[] | null> => {
   
-    console.log("repo", data);
+    
     
    
     const existingPactices = await Practice.find({ 
@@ -26,13 +26,13 @@ export const practiceData = async (data: PracticeEntity[]): Promise<PracticeEnti
     );
 
     if (newData.length === 0) {
-      console.log("All problems already exist, skipping insert.");
+      
       return existingPactices; 
     }
 
    
     const result = await Practice.insertMany(newData);
-    console.log("Inserted new practice:", result);
+    
     return result;
 
 };

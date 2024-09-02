@@ -10,11 +10,11 @@ export const profileUpdateController = (dependencies: IDependencies) => {
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log('profile', req.body);
+      
 
       const result = await updateProfileUseCase(dependencies).execute(req.body);
 
-      console.log(result);
+      
 
       res
         .status(HttpStatusCode.OK)

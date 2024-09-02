@@ -14,7 +14,7 @@ export const fetchSubmission = async (
       if (!submission) {
         return null;
       }
-  console.log('.../.../',submission)
+  
       return submission as unknown as SubmissionEntity;
     
   };

@@ -29,8 +29,8 @@ export const kafka = new Kafka({
   },
 });
 
-console.log(`Kafka client initialized with clientId: ${kafkaClientId}`);
-console.log(`Broker URLs: ${brokerUrls.join(', ')}`);
+
+}`);
 
 export const producer: Producer = kafka.producer({
   createPartitioner: Partitioners.LegacyPartitioner,

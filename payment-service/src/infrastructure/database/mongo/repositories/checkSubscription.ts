@@ -9,7 +9,7 @@ export const checkSubscription = async (userId: any): Promise<PaymentEntity | nu
     return null;
   }
 
-  console.log("id", existingPayment.id);
+  
 
   const subscriptionId = new mongoose.Types.ObjectId(existingPayment.id);
   const subscription = await Subscription.findById(subscriptionId);

@@ -10,7 +10,7 @@ export const submitController=(dependencies: IDependencies)=>{
 
     return async(req:Request,res:Response,next:NextFunction)=> {
 
-        console.log("req.body",req.body);
+        
         try {
             const result =await submitUseCase(dependencies).execute(req.body)
             if (result === null) {

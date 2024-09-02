@@ -24,7 +24,7 @@ export default async (
                     },
                     { new: true }
                 );
-                console.log("Practical updated:", updatedPractical);
+                
             } else {
                 // Create new problem
                 const newPractical = new Practical({
@@ -34,11 +34,11 @@ export default async (
                     language: practicalData.language
                 });
 
-                console.log("New problem created:", newPractical);
+                
                 await newPractical.save();
             }
         }
     } catch (error: any) {
-        console.log(error?.message);
+        
     }
 };

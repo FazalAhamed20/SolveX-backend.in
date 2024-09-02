@@ -9,12 +9,12 @@ export const fetchAllMemberController = (dependencies:IDependencies) => {
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log('./....',req.body)
+        
  
 
       const result =await fetchAllMembersUseCase(dependencies).execute(req.body.id,req.body.name)
 
-      console.log("result",result)
+      
 
       res.status(HttpStatusCode.OK).send(result)
      

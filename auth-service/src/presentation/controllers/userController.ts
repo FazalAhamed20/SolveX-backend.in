@@ -12,7 +12,7 @@ export const userController = (dependencies: IDependencies) => {
     try {
       const result = await getUsersUseCase(dependencies).execute();
 
-      console.log(result);
+      
 
       res
         .status(HttpStatusCode.OK)

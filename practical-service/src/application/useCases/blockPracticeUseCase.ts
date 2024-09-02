@@ -7,7 +7,7 @@ export const blockPracticeUseCase = (dependencies: IDependencies) => {
   } = dependencies;
   return {
     execute: async (data: PracticeEntity) => {
-        console.log("usecase",data);
+        
         
       return await blockPractice(data);
     },

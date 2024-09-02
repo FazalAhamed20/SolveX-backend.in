@@ -24,7 +24,7 @@ export const generateAccessToken = (user: {
   isAdmin?: boolean;
 }) => {
   const role = user.isAdmin ? 'admin' : 'user';
-  console.log('user', user);
+  
 
   return jwt.sign(
     {

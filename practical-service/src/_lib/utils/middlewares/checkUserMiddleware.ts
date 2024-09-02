@@ -6,7 +6,7 @@
 //   return async (req: Request, res: Response, next: NextFunction) => {
 //     const accessToken = req.cookies.access_token;
 
-//     console.log("accesstoken",accessToken);
+//     
     
 
 //     if (!accessToken) {

@@ -7,7 +7,7 @@ export const createPaymentUseCase = (dependencies: IDependencies) => {
     execute: async (amount: number, interval: string, subscriptionId: string, paymentMethodId: string,userId:any) => {
       const startDate = new Date();
       let endDate: Date;
-      console.log("hello");
+      
 
       switch (interval) {
         case 'monthly':

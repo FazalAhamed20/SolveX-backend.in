@@ -65,21 +65,21 @@ export const runController = (dependencies: IDependencies) => {
                 _id: string;
             } = req.body;
 
-            console.log('Source Code:', source);
-            console.log('Function Name:', functionName);
-            console.log("Language:", lang);
-            console.log('Test Cases:', testCases);
-            console.log('Display:', display);
+            
+            
+            
+            
+            
 
             if (!source || !lang || !functionName || !Array.isArray(testCases) || testCases.length === 0) {
                 return res.status(400).json({ error: 'Source code, language, function name, and test cases are required' });
             }
 
             const hackerEarthLang = langMap[lang.toLowerCase()] || lang.toUpperCase();
-            console.log('Mapped Language:', hackerEarthLang);
+            
 
             const results = await Promise.all(testCases.map(async (testCase: TestCase, index: number) => {
-                console.log("Test Case:", testCase);
+                
 
                 const formattedInputs = testCase.map((arg: any) => {
                     if (Array.isArray(arg)) {
@@ -100,7 +100,7 @@ export const runController = (dependencies: IDependencies) => {
                     return JSON.stringify(arg);
                 }).join(', ');
 
-                console.log("Formatted Inputs:", formattedInputs);
+                
 
                 let codeWithInput;
                 switch (lang) {
@@ -159,7 +159,7 @@ ${display}(${functionName}(
 ))`;
                 }
 
-                console.log("Code with Input:", codeWithInput);
+                
 
                 try {
                     const response = await axios.post(`https://api.hackerearth.com/v4/partner/code-evaluation/submissions/`, {
@@ -176,17 +176,17 @@ ${display}(${functionName}(
                         }
                     });
 
-                    console.log('Response Data:', response.data);
+                    
 
                     const { status_update_url } = response.data;
                     const finalResult = await pollSubmissionStatus(status_update_url);
 
-                    console.log("Final Result Run Status:", finalResult.run_status);
+                    
 
                     const output = await fetchOutput(finalResult.run_status.output);
 
-                    console.log("Output:", output);
-                    console.log(`Test Case ${index + 1} Output:`, output);
+                    
+                    
 
                     return {
                         testCaseIndex: index + 1,
@@ -223,7 +223,7 @@ ${display}(${functionName}(
             };
             await submitUseCase(dependencies).execute(data);
 
-            console.log('Final Response:', results);
+            
 
             res.status(HttpStatusCode.OK).json({ results });
         } catch (error: any) {

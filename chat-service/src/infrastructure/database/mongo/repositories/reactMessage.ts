@@ -23,6 +23,6 @@ export const reactMessage = async (data: any): Promise<any> => {
     }
     const result = await findMessage.save();
 
-    console.log('res', result);
+    
     return result.reactions;
 };

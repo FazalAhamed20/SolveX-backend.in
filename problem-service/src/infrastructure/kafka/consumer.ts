@@ -13,14 +13,14 @@ const subscriberCircuitBreaker = new CircuitBreaker(async (subscriberMethod: str
     await subscriber[subscriberMethod](subscriberData);
 }, circuitBreakerOptions);
 
-subscriberCircuitBreaker.on('open', () => console.log('Circuit Breaker Opened'));
-subscriberCircuitBreaker.on('close', () => console.log('Circuit Breaker Closed'));
-subscriberCircuitBreaker.on('halfOpen', () => console.log('Circuit Breaker Half-Open'));
+subscriberCircuitBreaker.on('open', () => );
+subscriberCircuitBreaker.on('close', () => );
+subscriberCircuitBreaker.on('halfOpen', () => );
 
 export const runConsumer = async () => {
     try {
         await consumer.connect();
-        console.log("Kafka connected");
+        
 
         await consumer.subscribe({
             topics: ['to-problem-service'],
@@ -29,20 +29,20 @@ export const runConsumer = async () => {
 
         const subscriber: any = createSubscriber();
 
-        console.log('Subscriber:', subscriber);
+        
 
         await consumer.run({
             eachMessage: async ({ topic, partition, message }) => {
                 const { key, value, offset } = message;
-                console.log(`Received message from topic: ${topic}, partition: ${partition}, offset: ${offset}`);
-                console.log(`Key: ${String(key)}`);
+                
+                }`);
 
                 try {
                     const subscriberMethod = String(key);
                     const subscriberData = JSON.parse(String(value));
                     
-                    console.log(`Method: ${subscriberMethod}`);
-                    console.log(`Data: ${JSON.stringify(subscriberData)}`);
+                    
+                    }`);
 
                     if (subscriberMethod in subscriber) {
                         await subscriberCircuitBreaker.fire(subscriberMethod, subscriberData, subscriber);
@@ -53,7 +53,7 @@ export const runConsumer = async () => {
                             { topic, partition, offset: (BigInt(offset) + BigInt(1)).toString() }
                         ]);
 
-                        console.log(`Committed offset ${offset} for topic ${topic}, partition ${partition}`);
+                        
                     } else {
                         console.error(`Subscriber method ${subscriberMethod} not found`);
                     }
@@ -72,7 +72,7 @@ export const stopConsumer = async () => {
     try {
         await consumer.stop();
         await consumer.disconnect();
-        console.log("Consumer stopped and disconnected");
+        
     } catch (error: any) {
         console.error('Error stopping consumer:', error.message);
     }

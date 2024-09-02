@@ -7,11 +7,11 @@ export const fetchSolvedController = (dependencies: IDependencies) => {
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(req.body);
+      
 
       const response = await fetchSolvedUseCase(dependencies).execute(req.body.email);
 
-      console.log(".....", response);
+      
       res.status(HttpStatusCode.OK).send(response);
     } catch (error) {
       

@@ -16,7 +16,7 @@ export default async (
     userId: ObjectId;
   }
 ) => {
-  console.log(data);
+  
 
   try {
     // Check if a clan with the same name or ID already exists
@@ -32,10 +32,10 @@ export default async (
     }
 
     let members: ClanMember[] = data.members || [];
-    console.log("Initial members:", members);
+    
 
     const leaderExists = members.some(member => member.id.toString() === data.userId.toString());
-    console.log("Leader exists:", leaderExists);
+    
 
     if (!leaderExists) {
       members.unshift({
@@ -68,7 +68,7 @@ export default async (
     });
 
     await newClan.save();
-    console.log("New clan created:", newClan);
+    
     return newClan;
   } catch (error) {
     console.error("Error creating new clan:", error);

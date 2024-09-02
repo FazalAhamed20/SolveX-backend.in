@@ -12,7 +12,7 @@ export const getAllPracticeUseCase = (dependencies: IDependencies) => {
     execute: async (data:PracticeEntity[]) => {
      
       
-      console.log("data",data);
+      
       
         
         return await practiceData(data)

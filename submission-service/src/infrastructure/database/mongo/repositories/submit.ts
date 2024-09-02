@@ -5,7 +5,7 @@ import { User } from "../models";
 export const submit = async (
   data: SubmissionEntity
 ): Promise<SubmissionEntity | null> => {
-  console.log("data", data);
+  
   const language = Array.isArray(data.language) ? data.language : [data.language];
 
   if (!data.email || !data.code) {
@@ -31,7 +31,7 @@ export const submit = async (
     
   
 if (languageCount > 1) {
-  console.log('language count',languageCount);
+  
   
   points += (languageCount - 1) * 20; 
 }
@@ -47,7 +47,7 @@ if (languageCount > 1) {
     if (newLanguages.length > 0) {
       existingSubmission.language.push(...newLanguages);
       await updateUserPoints(data.email, data.difficulty, newLanguages.length);
-      console.log(`Added ${newLanguages.length} new languages and updated points`);
+      
     }
 
     if (existingSubmission.submited !== "Solved") {
@@ -58,7 +58,7 @@ if (languageCount > 1) {
       
         if (data.submited === "Solved") {
           await updateUserPoints(data.email, data.difficulty, existingSubmission.language.length);
-          console.log("updated");
+          
           
         }
       } else {
@@ -76,7 +76,7 @@ if (languageCount > 1) {
    
     if (data.submited === "Solved") {
       await updateUserPoints(data.email, data.difficulty, language.length);
-      console.log("updated");
+      
     }
 
     return newSubmission as unknown as SubmissionEntity;

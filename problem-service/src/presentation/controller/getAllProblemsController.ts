@@ -24,7 +24,7 @@ export const getAllProblemsController = (dependencies: IDependencies) => {
           }
         }
       );
-      console.log('response from github',response.data)
+      
       return response.data
     } catch (error) {
       console.error('Error fetching problem data from GitHub:', error);
@@ -35,13 +35,13 @@ export const getAllProblemsController = (dependencies: IDependencies) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       const problems = await fetchProblemDataFromGithub();
-      console.log("problems", problems);
+      
       
       await getAllProblemsUseCase(dependencies).execute(problems);
 
       const fetch = await fetchAllProblemUseCase(dependencies).execute();
 
-      console.log("fetch", fetch);
+      
       
       await problemProducer(fetch);
       res.status(HttpStatusCode.OK).json(fetch);

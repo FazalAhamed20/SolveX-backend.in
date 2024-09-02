@@ -17,13 +17,13 @@ const producerCircuitBreaker = new CircuitBreaker(async (message: any) => {
 }, circuitBreakerOptions);
 
 producerCircuitBreaker.on('open', () =>
-  console.log('Circuit Breaker is now OPEN'),
+  ,
 );
 producerCircuitBreaker.on('close', () =>
-  console.log('Circuit Breaker is now CLOSED'),
+  ,
 );
 producerCircuitBreaker.on('halfOpen', () =>
-  console.log('Circuit Breaker is now HALF-OPEN'),
+  ,
 );
 
 export const sendMessageToService = async (
@@ -43,7 +43,7 @@ export const sendMessageToService = async (
 
   try {
     const result = await producerCircuitBreaker.fire(message);
-    console.log(`Message sent successfully to ${serviceTopic}`);
+    
     return result;
   } catch (error: any) {
     console.error('Error message:', error.message);
@@ -97,10 +97,10 @@ export const listenForAcknowledgements = async () => {
 
       const value = JSON.parse(message.value.toString());
 
-      console.log(`Received acknowledgement from ${topic}`);
-      console.log(`Original Key: ${value.originalKey}`);
-      console.log(`Status: ${value.status}`);
-      console.log(`Timestamp: ${value.timestamp}`);
+      
+      
+      
+      
 
       await handleAcknowledgement(topic, value);
     },
@@ -108,14 +108,14 @@ export const listenForAcknowledgements = async () => {
 };
 
 async function handleAcknowledgement(topic: string, ackData: any) {
-  console.log(`Handling acknowledgement for ${topic}:`, ackData);
+  
 }
 
 export const stopAcknowledgementListener = async () => {
   try {
     await consumer.stop();
     await consumer.disconnect();
-    console.log('Acknowledgement listener stopped and disconnected');
+    
   } catch (error: any) {
     console.error('Error stopping acknowledgement listener:', error.message);
   }

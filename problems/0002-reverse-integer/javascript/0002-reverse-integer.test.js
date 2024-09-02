@@ -18,19 +18,19 @@ inputLines.forEach((line, index) => {
     const actualOutput = reverseInteger(testCase);
 
     if (actualOutput === expectedOutput) {
-        console.log(`Test case ${index + 1} passed.`);
+        
     } else {
-        console.log(`Test case ${index + 1} failed.`);
-        console.log(`Input: ${testCase}`);
-        console.log(`Expected: ${expectedOutput}`);
-        console.log(`Got: ${actualOutput}`);
+        
+        
+        
+        
         allTestsPassed = false;
     }
 });
 
 // Print the overall result
 if (allTestsPassed) {
-    console.log('All test cases passed!');
+    
 } else {
-    console.log('Some test cases failed.');
+    
 }

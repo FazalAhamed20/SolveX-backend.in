@@ -19,7 +19,7 @@ function chatHandler(io: Server): void {
 
   io.on('connection', (socket: Socket) => {
     const userId = socket.handshake.query.userId as string;
-    console.log('userId',userId)
+    
     let currentRoom: string | null = null;
 
     socket.on('joinRoom', ({ roomId, userId }) => {
@@ -35,7 +35,7 @@ function chatHandler(io: Server): void {
       socket.to(roomId).emit('userJoined', userId);
       socket.emit('onlineUsers', Array.from(roomUsers[roomId]));
 
-      console.log(`User ${userId} joined clan: ${roomId}`);
+      
       console.log(
         `Online users in room ${roomId}:`,
         Array.from(roomUsers[roomId]),
@@ -47,31 +47,31 @@ function chatHandler(io: Server): void {
     });
 
     socket.on('sendMessage', async ({ roomId, message }) => {
-      console.log('Message received:', message, 'Room:', roomId);
+      
       io.to(roomId).emit('message', message);
       socket.to(roomId).emit('messageStatusUpdate', { _id: message._id, status: 'delivered' });
-      console.log('messageid', message._id);
+      
       updateMessageStatus(roomId, userId, 'delivered', message._id);
     });
 
     socket.on('messageRead', async ({ roomId, messageId }) => {
-      console.log('m', messageId);
+      
       io.to(roomId).emit('messageStatusUpdate', { _id: messageId, status: 'read' });
       updateMessageStatus(roomId, userId, 'read', messageId);
     });
 
     socket.on('typing', ({ roomId, user }) => {
-      console.log(`${user} is typing in room ${roomId}`);
+      
       socket.to(roomId).emit('typing', { user });
     });
 
     socket.on('deleteMessage', async (data: { roomId: string; messageId: string }) => {
-      console.log('delete')
+      
       try {
         const { roomId, messageId } = data;
-        console.log('delete...............')
+        
         socket.to(roomId).emit('deleteMessage', messageId);
-        console.log(`Message ${messageId} deleted from room ${roomId}`);
+        
       } catch (error) {
         console.error('Error in deleteMessage event:', error);
       }
@@ -101,7 +101,7 @@ function chatHandler(io: Server): void {
     });
 
     socket.on('disconnect', () => {
-      console.log('Client disconnected:', userId);
+      
       if (currentRoom) {
         leaveRoom(socket, currentRoom, userId);
       }
@@ -113,7 +113,7 @@ function chatHandler(io: Server): void {
     if (roomUsers[roomId]) {
       roomUsers[roomId].delete(userId);
       socket.to(roomId).emit('userLeft', userId);
-      console.log(`User ${userId} left clan: ${roomId}`);
+      
       console.log(
         `Online users in room ${roomId}:`,
         Array.from(roomUsers[roomId]),
@@ -129,7 +129,7 @@ async function updateMessageStatus(
   messageId?: string
 ) {
   try {
-    console.log('Arguments:', { roomId, userId, status, messageId });
+    
     const query: any = { roomId, userId };
     
     if (messageId) {
@@ -142,13 +142,13 @@ async function updateMessageStatus(
       query.status = { $in: ['sent', 'delivered'] };
     }
 
-    console.log('Query:', query);
+    
     
     const updateResult = await Message.updateMany({ clanId: roomId }, {
       $set: { status: status },
     });
 
-    console.log('Update result:', updateResult);
+    
 
     return updateResult;
   } catch (error) {

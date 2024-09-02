@@ -10,13 +10,13 @@ export const blockUserController = (dependencies: IDependencies) => {
 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(req.body);
+      
       const result = await blockUserUseCase(dependencies).execute(req.body);
 
       if (!result) {
         throw new Error('Blocking User Failed');
       }
-      console.log('Admin User', result);
+      
       const data = {
         isBlocked: result.isBlocked,
         email: result.email,

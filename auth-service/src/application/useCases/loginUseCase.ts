@@ -8,7 +8,7 @@ export const loginUseCase = (dependencies: IDependencies) => {
   return {
     execute: async (email: string, password: string) => {
       const result = await findByEmail(email);
-      console.log(result);
+      
 
       if (!result) {
         throw new Error('Email or password is incorrect');

@@ -11,7 +11,7 @@ export const fetchSubmissionController = (dependencies: IDependencies) => {
 
             const result = await fetchSubmissionUseCase(dependencies).execute(email, id)
 
-            console.log('Result:', result)
+            
 
             if (result === null) {
                 res.send({ success: false })

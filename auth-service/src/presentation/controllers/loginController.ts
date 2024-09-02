@@ -10,7 +10,7 @@ export const loginController = (dependencies: IDependencies) => {
   } = dependencies;
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(req.body);
+      
 
       const credentials = req.body;
 
@@ -28,7 +28,7 @@ export const loginController = (dependencies: IDependencies) => {
         throw new Error('User logged failed');
       }
 
-      console.log('result.......', result);
+      
       const refreshToken = generateRefreshToken({
         _id: String(result?._id),
         email: result?.email,
@@ -65,7 +65,7 @@ export const loginController = (dependencies: IDependencies) => {
         isAdmin: result.isAdmin,
       });
     } catch (error) {
-      console.log("error......",error)
+      
       next(error);
     }
   };

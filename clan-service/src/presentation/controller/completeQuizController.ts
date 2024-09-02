@@ -19,7 +19,7 @@ export const completeQuizController = (dependencies:IDependencies) => {
 
       const result=await completeQuizUseCase(dependencies).execute(clanId,userId,score)
 
-      console.log("result........|........",result)
+      
       if (typeof result === 'string') {
         
         res.status(HttpStatusCode.BAD_REQUEST).send(result);
