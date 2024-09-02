@@ -12,6 +12,8 @@ export const chatBotController = () => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const { prompt }: { prompt: string } = req.body;
 
+
+    
     if (!prompt) {
       return res.status(400).json({ error: 'Prompt is required' });
     }
