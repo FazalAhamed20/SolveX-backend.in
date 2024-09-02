@@ -3,6 +3,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
 import { HttpStatusCode } from '@/_lib/httpStatusCode/httpStatusCode';
 
+
 dotenv.config();
 
 const client = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
