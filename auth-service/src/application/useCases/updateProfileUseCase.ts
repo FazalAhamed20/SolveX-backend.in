@@ -10,6 +10,8 @@ export const updateProfileUseCase = (dependencies: IDependencies) => {
     execute: async (data: UserEntity): Promise<any | undefined> => {
       const user = await updateProfile(data);
 
+      console.log('hello')
+
       if (!user) {
         throw new Error('User not found with the provided email address');
       }
