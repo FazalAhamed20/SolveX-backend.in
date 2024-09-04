@@ -37,7 +37,7 @@ export const fetchAllSubmission = async (): Promise<SubmissionEntity[]> => {
     const username = user.username || 'Unknown';
     const points = user.points || 0;
 
-    const key = `${email}-${difficulty}-${language}`;
+    const key = email;
 
     if (!acc[key]) {
       acc[key] = {
